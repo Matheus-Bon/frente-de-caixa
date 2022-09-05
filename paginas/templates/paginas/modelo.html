@@ -1,0 +1,147 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<link>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+<link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+
+
+{% block titulo %}
+<title>Modelo</title>
+{% endblock %}
+
+
+</head>
+
+
+
+
+<body>
+
+    {% block sidebar %}
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                <i class='bx bx-game'></i>
+                <div class="logo_name">ComeCome</div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li>
+                <a href="{% url 'vendas' %}">
+                    <i class='bx bxs-cart'></i>
+                    <span class="links_name">Vendas</span>
+                </a>
+                <span class="tooltip">Vendas</span>
+            </li>
+            <li>
+                <a href="{% url 'estoque' %}">
+                    <i class='bx bx-package'></i>
+                    <span class="links_name">Estoque</span>
+                </a>
+                <span class="tooltip">Estoque</span>
+            </li>
+            <li>
+                <a href="{% url 'gastos' %}">
+                    <i class='bx bx-money-withdraw'></i>
+                    <span class="links_name">Gastos</span>
+                </a>
+                <span class="tooltip">Gastos</span>
+            </li>
+            <li>
+                <a href="{% url 'relatorios' %}">
+                    <i class='bx bxs-pie-chart-alt-2'></i>
+                    <span class="links_name">Relatórios</span>
+                </a>
+                <span class="tooltip">Relatórios</span>
+            </li>
+        </ul>
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    <i class='bx bxs-user'></i>
+                    <div class="name_job">
+                        <div class="name">Matheus Bon</div>
+                    </div>
+                </div>
+                <a href="{% url 'logout' %}">
+                    <i class='bx bx-log-out' id="log_out"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+
+    {% endblock %}
+
+    {% block titutlo_pagina %}
+
+    <div class="home_title">
+
+        {% if request.path == '/vendas/' %}
+        <div class="titulo_pagina">Vendas</div>
+
+
+        {% elif request.path == '/estoque/' %}
+        <div class="titulo_pagina">Estoque</div>
+
+
+        {% elif request.path == '/gastos/' %}
+        <div class="titulo_pagina">Gastos</div>
+
+
+        {% elif request.path == '/relatorios/' %}
+        <div class="titulo_pagina">Relatórios</div>
+        {% endif %}
+
+
+    </div>
+    {% endblock %}
+
+    {% block conteudo %}
+    <div class="home_content">
+        <div class="conteudo_pagina">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti laborum quidem laboriosam est aut sequi
+            hic molestias expedita totam eaque explicabo, dolores odio ullam architecto delectus ex dolorem dicta
+            minima?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore doloremque velit labore ullam
+            quisquam in quia consequatur obcaecati, laborum dicta molestiae, ducimus minus quas temporibus! Corporis
+            reiciendis harum sint saepe.lore Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis
+            suscipit nesciunt at tempore excepturi autem facere itaque dignissimos, cumque voluptates ut, pariatur ipsa.
+            Aut vero tempore officiis, veritatis voluptatem dolorum? Lorem ipsum, dolor sit amet consectetur adipisicing
+            elit. Illum commodi nemo voluptatum impedit optio quis odio magni atque quasi! Illum eius ratione autem
+            animi reiciendis numquam veritatis molestiae vero odio. Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Fuga veniam vero voluptates. Id corporis, facilis voluptates eligendi obcaecati error exercitationem
+            sit laborum eos aliquam dolor necessitatibus fugiat. Dolorum, ducimus eveniet?
+        </div>
+    </div>
+
+    {% endblock %}
+
+    {% block login %}
+    {% endblock %}
+
+
+
+</body>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
+
+</html>

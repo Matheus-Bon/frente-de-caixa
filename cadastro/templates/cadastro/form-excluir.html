@@ -1,0 +1,28 @@
+{% extends 'paginas/modelo.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>Excluir Produtos/Despesas</title>
+{% endblock %}
+
+{% block conteudo %}
+
+<div class="home_content">
+    <div class="conteudo_pagina">
+        <h3>Excluir cadastro</h3>
+
+        Deseja excluir o registro: {{ object }}?
+
+        {% csrf_token %}
+
+        {{form.as_p}}
+
+        <button type="submit" class="btn btn-danger">Excluir</button>
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}

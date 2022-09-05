@@ -1,0 +1,85 @@
+{% extends 'paginas/modelo.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>Vendas</title>
+{% endblock %}
+
+{% block conteudo %}
+<style>
+
+</style>
+
+<section class="home_content">
+    <div class="sales_content">
+        <div class="sales_itens">
+            <div class="sales_itens-titles">
+                <h3>Código</h3>
+                <h3>Produto</h3>
+                <h3>Quantidade</h3>
+                <h3 style="border: 0;">Preço Final</h3>
+            </div>
+            <div class="sales_itens-products">
+                <h4>00001</h4>
+                <h4>Coxinha</h4>
+                <h4>100</h4>
+                <h4 style="border: 0;">R$ 35</h4>
+            </div>
+            <div class="sales_itens-products">
+                <h4>00001</h4>
+                <h4>Coxinha</h4>
+                <h4>100</h4>
+                <h4 style="border: 0;">R$ 35</h4>
+            </div>
+            <div class="sales_itens-products">
+                <h4>00001</h4>
+                <h4>Coxinha</h4>
+                <h4>100</h4>
+                <h4 style="border: 0;">R$ 35</h4>
+            </div>
+        </div>
+        <form class="sales_add">
+            <div class="sales_add-labels">
+                <label for="prod">Nome do Produto</label>
+                <div>
+                    <input type="text" name="" id="prod">
+                </div>
+            </div>
+            <div class="sales_add-labels">
+                <label for="cod">Código do Produto</label>
+                <div>
+                    <input type="text" name="" id="cod">
+                </div>
+            </div>
+            <div class="sales_add-labels">
+                <label for="qtt">Quantidade</label>
+                <div>
+                    <input type="text" name="" id="qtt">
+                </div>
+            </div>
+            <div class="sales_add-labels">
+                <label for="total">Valor Total</label>
+                <div>
+                    <input type="text" name="" id="total">
+                </div>
+            </div>
+            <div class="sales_add-buttons">
+                <button type="submit" class="btn btn-primary mt-3">Adicionar Item</button>
+                <button type="submit" class="btn btn-primary mt-3">Finalizar Compras</button>
+            </div>
+        </form>
+        <div class="sales_price">
+            <div class="subtotal">
+                <h2>Subtotal:</h2>
+                <div class="value">R$ 500</div>
+            </div>
+            <div class="total">
+                <h2>Valor Total:</h2>
+                <div class="value">R$ 500</div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

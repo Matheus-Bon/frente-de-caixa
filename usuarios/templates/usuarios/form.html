@@ -1,0 +1,53 @@
+{% extends 'paginas/modelo.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block titulo %}
+<title>Login</title>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}
+
+{% block titutlo_pagina %}
+{% endblock %}
+
+{% block conteudo %}
+{% endblock %}
+
+{% block login %}
+
+<html class="login">
+
+
+<section class="login_main">
+    <div class="row">
+
+        <h3 class="login_title">Login</h3>
+
+        <img class="login_logo" src="{% static 'imagens/pac-man.png' %}">
+
+        <form action="" method="POST">
+
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="login_button-area">
+                <button type="submit" class="btn btn-primary mt-3">Entrar</button>
+                <button type="" class="btn login_button2 mt-3">Criar Conta</button>
+            </div>
+
+
+        </form>
+
+
+    </div>
+</section>
+
+</html>
+
+
+
+
+
+
+{% endblock %}
