@@ -9,7 +9,73 @@
 
 <div class="home_content">
     <div class="conteudo_pagina">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque consequuntur, saepe laudantium fuga animi, enim labore cumque aperiam rem a voluptatum tempore provident maxime ex distinctio veritatis nam expedita fugiat.
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tr>
+                    <th>Código</th>
+                    <th>Produto</th>
+                    <th>Qntd.</th>
+                </tr>
+
+                {% for produto in object_list %}
+
+                <tr>
+                    <td>{{ produto.pk }}</td>
+                    <td>{{ produto.nome_produto }}</td>
+                    <td>{{ produto.quantidade_produto }}</td>
+                </tr>
+
+                {% empty %}
+                <tr>
+                    <td colspan="3">Nenhum campo registrado</td>
+                </tr>
+
+
+                {% endfor %}
+
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Despesa</th>
+                            <th>Qntd.</th>
+                            <th>Custo</th>
+                        </tr>
+        
+                        {% for despesa in object_list %}
+        
+                        <tr>
+                            <td>{{ despesa.nome_despesa }}</td>
+                            <td>{{ despesa.quantidade_despesa }}</td>
+                            <td>{{ despesa.custo }}</td>
+                        </tr>
+        
+                        {% empty %}
+                        <tr>
+                            <td colspan="3">Nenhum campo registrado</td>
+                        </tr>
+        
+        
+                        {% endfor %}
+
+
+
+
+
+
+            </table>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
     </div>
 </div>
 

@@ -2,6 +2,7 @@ from django.urls import path
 from .views import ProdutoCreate, DespesaCreate
 from .views import ProdutoUpdate, DespesaUpdate
 from .views import ProdutoDelete, DespesaDelete
+from .views import ProdutoList, DespesaList
 
 
 
@@ -15,7 +16,8 @@ urlpatterns = [
     path('excluir/produto/<int:pk>/', ProdutoDelete.as_view(),name='excluir-produto'),
     path('excluir/despesa/<int:pk>', DespesaDelete.as_view(),name='excluir-despesa'),
     
-
+    path('gastos/',ProdutoList.as_view(), name='lista-produto'),
+    path('gastos/',DespesaList.as_view(), name='lista-despesa'),
 
 
 ]

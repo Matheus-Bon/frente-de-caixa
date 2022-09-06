@@ -53,13 +53,10 @@ class DespesaDelete(UpdateView):
 
 """ Lista """
 
-class lista(TemplateView):
-    template_name = 'paginas/gastos'
-    
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-        produtos = ListaProdutos.objects.filter().order_by('id').reverse()
-        despesas = ListaDespesas.objects.filter().order_by('id').reverse()
-        seo = get_seo_data('projects')
+class ProdutoList(ListView):
+    model = ListaProdutos
+    template_name = 'paginas/gastos.html'
 
-        context.update( {'produtos': produtos, 'despesas':despesas})
+class DespesaList(ListView):
+    model = ListaDespesas
+    template_name = 'paginas/gastos.html'

@@ -3,3 +3,37 @@
 {% block titulo %}
 <title>Estoque</title>
 {% endblock %}
+
+{% block conteudo %}
+
+    <div class="home_content">
+        <div class="conteudo_pagina">
+            
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Código</th>
+                        <th>Produto</th>
+                        <th>Qntd.</th>
+                    </tr>
+    
+                    {% for produto in object_list %}
+    
+                    <tr>
+                        <td>{{ produto.pk }}</td>
+                        <td>{{ produto.nome_produto }}</td>
+                        <td>{{ produto.quantidade_produto }}</td>
+                    </tr>
+    
+                    {% empty %}
+                    <tr>
+                        <td colspan="3">Nenhum campo registrado</td>
+                    </tr>
+    
+    
+                    {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}
