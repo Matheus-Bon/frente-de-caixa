@@ -7,40 +7,72 @@
 
 {% block conteudo %}
 
-    <div class="home_content">
-        <div class="conteudo_pagina">
-            
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <tr>
-                        <th>Código</th>
-                        <th>Produto</th>
-                        <th>Qntd.</th>
-                        <th>Custo/Venda</th>
-                        <th>Fornecedor</th>
-                        <th>Data de Adição</th>
-                    </tr>
-    
-                    {% for produto in object_list %}
-    
-                    <tr>
-                        <td>{{ produto.pk }}</td>
-                        <td>{{ produto.nome_produto }}</td>
-                        <td>{{ produto.quantidade_produto }}</td>
-                        <td>{{ produto.custo_venda }}</td>
-                        <td>{{ produto.fornecedor }}</td>
-                        <td>{{ produto.data_adicao }}</td>
-                    </tr>
-    
-                    {% empty %}
-                    <tr>
-                        <td colspan="3">Nenhum campo registrado</td>
-                    </tr>
-    
-    
-                    {% endfor %}
+<div class="home_content">
+    <div class="conteudo_pagina">
+
+        
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Adicionar Produto
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Adicione um Item</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+                        <button type="button" class="btn btn-primary">Adicionar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tr>
+                    <th>Código</th>
+                    <th>Produto</th>
+                    <th>Qntd.</th>
+                    <th>Custo/Venda</th>
+                    <th>Fornecedor</th>
+                    <th>Data de Adição</th>
+                </tr>
+
+                {% for produto in object_list %}
+
+                <tr>
+                    <td>{{ produto.pk }}</td>
+                    <td>{{ produto.nome_produto }}</td>
+                    <td>{{ produto.quantidade_produto }}</td>
+                    <td>{{ produto.custo_venda }}</td>
+                    <td>{{ produto.fornecedor }}</td>
+                    <td>{{ produto.data_adicao }}</td>
+                </tr>
+
+                {% empty %}
+                <tr>
+                    <td colspan="3">Nenhum campo registrado</td>
+                </tr>
+
+
+                {% endfor %}
         </div>
     </div>
 
 
-{% endblock %}
+    {% endblock %}
