@@ -47,14 +47,14 @@
                 <span class="tooltip">Vendas</span>
             </li>
             <li>
-                <a href="{% url 'estoque' %}">
+                <a href="{% url 'lista-produto' %}">
                     <i class='bx bx-package'></i>
                     <span class="links_name">Estoque</span>
                 </a>
                 <span class="tooltip">Estoque</span>
             </li>
             <li>
-                <a href="{% url 'gastos' %}">
+                <a href="{% url 'lista-despesa' %}">
                     <i class='bx bx-money-withdraw'></i>
                     <span class="links_name">Gastos</span>
                 </a>
@@ -87,7 +87,7 @@
 
     {% endblock %}
 
-    {% block titutlo_pagina %}
+    {% block titulo_pagina %}
 
     <div class="home_title">
 
@@ -95,11 +95,11 @@
         <div class="titulo_pagina">Vendas</div>
 
 
-        {% elif request.path == '/estoque/' %}
+        {% elif request.path == '/estoque/lista-produtos' %}
         <div class="titulo_pagina">Estoque</div>
 
 
-        {% elif request.path == '/gastos/' %}
+        {% elif request.path == '/gastos/despesas' %}
         <div class="titulo_pagina">Gastos</div>
 
 

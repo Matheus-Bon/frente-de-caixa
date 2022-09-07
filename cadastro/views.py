@@ -55,8 +55,8 @@ class DespesaDelete(UpdateView):
 
 class ProdutoList(ListView):
     model = ListaProdutos
-    template_name = 'paginas/gastos.html'
+    template_name = 'paginas/listas/estoque.html'
 
 class DespesaList(ListView):
     model = ListaDespesas
-    template_name = 'paginas/gastos.html'
+    template_name = 'paginas/listas/gastos.html'

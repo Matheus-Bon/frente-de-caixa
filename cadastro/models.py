@@ -1,3 +1,4 @@
+from audioop import reverse
 from django.db import models
 
 class ListaProdutos(models.Model):

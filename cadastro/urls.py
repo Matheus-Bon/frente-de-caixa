@@ -16,8 +16,8 @@ urlpatterns = [
     path('excluir/produto/<int:pk>/', ProdutoDelete.as_view(),name='excluir-produto'),
     path('excluir/despesa/<int:pk>', DespesaDelete.as_view(),name='excluir-despesa'),
     
-    path('gastos/',ProdutoList.as_view(), name='lista-produto'),
-    path('gastos/',DespesaList.as_view(), name='lista-despesa'),
+    path('estoque/lista-produtos',ProdutoList.as_view(), name='lista-produto'),
+    path('gastos/despesas',DespesaList.as_view(), name='lista-despesa'),
 
 
 ]
