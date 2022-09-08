@@ -1,6 +1,5 @@
 {% extends 'paginas/modelo.html' %}
 {% load static %}
-{% load crispy_forms_tags %}
 
 {% block titulo %}
 <title>Estoque</title>
@@ -11,7 +10,8 @@
 <div class="home_content">
     <div class="conteudo_pagina">
 
-
+        <!-- data-bs-toggle="modal" data-bs-target="#staticBackdrop" -->
+        <!-- Button trigger modal -->
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Launch demo modal
@@ -26,27 +26,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        {% include 'cadastro/add.html' %}
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-        <form method="post">
-
-            {% csrf_token %}
-            {{ form|crispy }}
-
-            <input type="submit" value="Save">
-        </form>
-
-
 
         <div class="table-responsive">
             <table class="table table-striped">

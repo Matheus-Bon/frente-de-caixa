@@ -1,4 +1,8 @@
+from itertools import product
+from django.http import HttpResponseRedirect
+import imp
 from multiprocessing import context
+from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from .models import ListaDespesas, ListaProdutos
@@ -22,6 +26,11 @@ class DespesaCreate(CreateView):
     success_url = reverse_lazy('lista-despesa')
 
 
+class ProdutoCreate1(CreateView):
+    model = ListaProdutos
+    fields = ['nome_produto', 'quantidade_produto', 'custo_venda', 'fornecedor', 'data_adicao']
+    template_name = 'cadastro/form1.html'
+
 """ Update """
 
 class ProdutoUpdate(UpdateView):
@@ -30,7 +39,7 @@ class ProdutoUpdate(UpdateView):
     template_name = 'paginas/listas/estoque.html'
     success_url = reverse_lazy('lista-produto')
 
-
+    
 class DespesaUpdate(UpdateView):
     model = ListaDespesas
     fields = ['nome_despesa', 'quantidade_despesa', 'custo', 'tipo_gasto', 'data_atualizacao']
@@ -60,3 +69,38 @@ class ProdutoList(ListView):
 class DespesaList(ListView):
     model = ListaDespesas
     template_name = 'paginas/listas/gastos.html'
+
+def estoqueList(request):
+    qs = ListaProdutos.objects.all()
+    return render(request, "paginas/listas/estoque.html", {'object_list':qs})
+
+def addProduct(request):
+    if request.method == "POST":
+        product = ListaProdutos()
+        product.nome_produto = request.POST.get('nome_produto')
+        product.quantidade_produto  = request.POST.get('quantidade_produto')
+        product.custo_venda = request.POST.get('custo_venda')
+        product.fornecedor = request.POST.get('fornecedor')
+        product.data_adicao = request.POST.get('data_adicao')
+        product.save()
+        return HttpResponseRedirect('/estoque')
+    else:
+        return render(request, 'cadastro\\add.html')
+
+
+def editProduct(request):
+    if request.method == "POST":
+        product = ListaProdutos.objects.get(id = request.POST.get('id'))
+        if product != None:
+            product.nome_produto = request.POST.get('nome_produto')
+            product.quantidade_produto  = request.POST.get('quantidade_produto ')
+            product.custo_venda = request.POST.get('custo_venda')
+            product.fornecedor = request.POST.get('fornecedor')
+            product.data_adicao = request.POST.get('data_adicao')
+            product.save()
+            return HttpResponseRedirect('estoque')
+
+def delProduct(request, product_id):
+    product = ListaProdutos.objects.get(id = product_id)
+    product.delete()
+    return HttpResponseRedirect('estoque')

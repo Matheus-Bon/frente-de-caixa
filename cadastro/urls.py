@@ -1,9 +1,9 @@
 from django.urls import path
-from .views import ProdutoCreate, DespesaCreate
+from .views import ProdutoCreate, DespesaCreate, ProdutoCreate1
 from .views import ProdutoUpdate, DespesaUpdate
 from .views import ProdutoDelete, DespesaDelete
 from .views import ProdutoList, DespesaList
-
+from . import views
 
 
 urlpatterns = [
@@ -13,11 +13,15 @@ urlpatterns = [
     path('editar/produto/<int:pk>', ProdutoUpdate.as_view(),name='editar-produto'),
     path('editar/despesa/<int:pk>', DespesaUpdate.as_view(),name='editar-despesa'),
 
-    path('excluir/produto/<int:pk>/', ProdutoDelete.as_view(),name='excluir-produto'),
+    path('excluir/produto/<int:pk>', ProdutoDelete.as_view(),name='excluir-produto'),
     path('excluir/despesa/<int:pk>', DespesaDelete.as_view(),name='excluir-despesa'),
     
-    path('estoque/lista-produtos',ProdutoList.as_view(), name='lista-produto'),
     path('gastos/despesas',DespesaList.as_view(), name='lista-despesa'),
 
+    # Estoque
+    path('estoque',views.estoqueList, name='estoque'),
+    path('estoque/adicionar', views.addProduct, name='estoque-adicionar'),
+    path('estoque/editar/<int:pk>', views.editProduct, name='estoque-editar'),
+    path('estoque/deletar/<int:pk>', views.delProduct, name='estoque-deletar'),
 
 ]
