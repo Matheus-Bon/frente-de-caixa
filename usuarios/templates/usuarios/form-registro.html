@@ -3,29 +3,29 @@
 {% load crispy_forms_tags %}
 
 {% block titulo %}
-<title>Login</title>
+<title>Registro</title>
+<link rel="icon" href="{% static 'imagens/game-regular-25.png' %}">
 {% endblock %}
 
 {% block sidebar %}
 {% endblock %}
 
-{% block titutlo_pagina %}
+{% block titulo_pagina %}
 {% endblock %}
 
 {% block conteudo %}
 {% endblock %}
 
 {% block login %}
-
 <html class="login">
 
 
 <section class="login_main">
     <div class="row">
-
-        <h3 class="login_title">Login</h3>
-
-        <img class="login_logo" src="{% static 'imagens/pac-man.png' %}">
+        <box-icon name='game'></box-icon>
+        <h3 class="login_title">
+            <box-icon name='game'></box-icon>Prencha os campos necessários<box-icon name='game'></box-icon>
+        </h3>
 
         <form action="" method="POST">
 
@@ -33,18 +33,17 @@
             {{ form|crispy }}
 
             <div class="login_button-area">
-                <button type="submit" class="btn btn-primary mt-3">Entrar</button>
-                <a href="{% url 'registro-usuario' %}" class="btn btn-primary mt-3">Registrar</a>
+                <button type="submit" class="btn btn-primary btn-block">Registrar</button>
             </div>
 
-
         </form>
-
 
     </div>
 </section>
 
 </html>
+
+
 
 
 

@@ -1,5 +1,6 @@
 {% extends 'paginas/modelo.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block titulo %}
 <title>Estoque</title>
@@ -10,36 +11,41 @@
 <div class="home_content">
     <div class="conteudo_pagina">
 
-        
+
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Adicionar Produto
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Launch demo modal
         </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Adicione um Item</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
 
-                        <form method="post">
-                            {% csrf_token %}
-                            {{ form.as_p }}
-                        </form>
-
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-                        <button type="button" class="btn btn-primary">Adicionar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
         </div>
+
+
+
+        <form method="post">
+
+            {% csrf_token %}
+            {{ form|crispy }}
+
+            <input type="submit" value="Save">
+        </form>
+
 
 
         <div class="table-responsive">

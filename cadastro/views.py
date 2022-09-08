@@ -30,7 +30,7 @@ class ProdutoUpdate(UpdateView):
     template_name = 'paginas/listas/estoque.html'
     success_url = reverse_lazy('lista-produto')
 
-    
+
 class DespesaUpdate(UpdateView):
     model = ListaDespesas
     fields = ['nome_despesa', 'quantidade_despesa', 'custo', 'tipo_gasto', 'data_atualizacao']
