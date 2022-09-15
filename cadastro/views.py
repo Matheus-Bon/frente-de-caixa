@@ -66,9 +66,14 @@ class ProdutoList(ListView):
     model = ListaProdutos
     template_name = 'paginas/listas/estoque.html'
 
-class DespesaList(ListView):
-    model = ListaDespesas
-    template_name = 'paginas/listas/gastos.html'
+
+###class DespesaList(ListView):
+   ### model = ListaDespesas
+    ###template_name = 'paginas/listas/gastos.html'
+
+
+
+
 
 def estoqueList(request):
     qs = ListaProdutos.objects.all()
@@ -104,3 +109,12 @@ def delProduct(request, product_id):
     product = ListaProdutos.objects.get(id = product_id)
     product.delete()
     return HttpResponseRedirect('estoque')
+
+
+
+
+""" Configuração da views para Despesas """
+
+def lista_despesa(request):
+    lista_despesa = ListaDespesas.objects.all()
+    return render(request, "paginas/listas/gastos.html", {"despesa":lista_despesa})

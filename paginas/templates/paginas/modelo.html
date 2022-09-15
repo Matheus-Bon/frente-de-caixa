@@ -3,23 +3,30 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<link>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <link>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="{% static 'css/styles4.css' %}">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
-<link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Link Ícones -->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- Link Bootstrap 5.2 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <!-- Datatables CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
 
 
 
-{% block titulo %}
-<title>Modelo</title>
-{% endblock %}
+    {% block titulo %}
+    <title>Modelo</title>
+    {% endblock %}
 
 
 </head>
@@ -54,7 +61,7 @@
                 <span class="tooltip">Estoque</span>
             </li>
             <li>
-                <a href="{% url 'lista-despesa' %}">
+                <a href="{% url 'gastos' %}">
                     <i class='bx bx-money-withdraw'></i>
                     <span class="links_name">Gastos</span>
                 </a>
@@ -73,7 +80,7 @@
                 <div class="profile_details">
                     <i class='bx bxs-user'></i>
                     <div class="name_job">
-                        <div class="name">Matheus Bon</div>
+                        <div class="name">{{ request.user }}</div>
                     </div>
                 </div>
                 <a href="{% url 'logout' %}">
@@ -99,14 +106,13 @@
         <div class="titulo_pagina">Estoque</div>
 
 
-        {% elif request.path == '/gastos/despesas' %}
+        {% elif request.path == '/gastos' %}
         <div class="titulo_pagina">Gastos</div>
 
 
         {% elif request.path == '/relatorios/' %}
         <div class="titulo_pagina">Relatórios</div>
         {% endif %}
-
 
     </div>
     {% endblock %}
@@ -135,13 +141,51 @@
 
 
 
+
+
+
+
+
+
+    <!-- JS para o Bootstrap 5.2 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+    </script>
+
+    <!-- JS para os Ícones -->
+    <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
+
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous">
+    </script>
+
+    <!-- Datatables JS -->
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+
+
+    <!-- Configurações da tabela de despesas variáveis na página de gastos -->
+    <script>
+        $("#tabela_despesa_variavel").DataTable({
+
+            paging: true,
+            pageLength: 5,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+            orderable: true
+
+        })
+    </script>
+
+
+
+
+
 </body>
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-    crossorigin="anonymous"></script>
 
 </html>

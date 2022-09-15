@@ -3,6 +3,12 @@
 
 {% block titulo %}
 <title>Vendas</title>
+
+<link rel="icon" type="image/x-icon" href="{% static 'imagens/game-solid-26.png' %}">
+
+
+
+
 {% endblock %}
 
 {% block conteudo %}
@@ -38,11 +44,14 @@
                 <h4 style="border: 0;">R$ 35</h4>
             </div>
         </div>
+
+
+
         <form class="sales_add">
             <div class="sales_add-labels">
                 <label for="prod">Nome do Produto</label>
                 <div>
-                    <input type="text" name="" id="prod">
+                    <input type="text" name="busca_produto" id="prod">
                 </div>
             </div>
             <div class="sales_add-labels">
@@ -63,6 +72,9 @@
                     <input type="text" name="" id="total">
                 </div>
             </div>
+
+
+            
             <div class="sales_add-buttons">
                 <button type="submit" class="btn btn-primary mt-3">Adicionar Item</button>
                 <button type="submit" class="btn btn-primary mt-3">Finalizar Compras</button>

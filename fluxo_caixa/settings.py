@@ -44,8 +44,11 @@ INSTALLED_APPS = [
     'cadastro.apps.CadastroConfig',
     
 
+## Funcionalidades para o Django ##
 
     'crispy_forms',
+    
+    
 
 ]
 

@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block titulo %}
-<title>PDV|Gastos</title>
+<title>Gastos</title>
+<link rel="icon" type="image/x-icon" href="{% static 'imagens/game-solid-26.png' %}">
 {% endblock %}
 
 {% block conteudo %}
@@ -10,40 +11,36 @@
 <div class="home_content">
     <div class="conteudo_pagina">
 
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <tr>
-                            <th>Despesa</th>
-                            <th>Qntd.</th>
-                            <th>Custo</th>
-                            <th>Tipo de Gasto</th>
-                            <th>Data de Atualização</th>
-                        </tr>
-        
-                        {% for despesa in object_list %}
-        
-                        <tr>
-                            <td>{{ despesa.nome_despesa }}</td>
-                            <td>{{ despesa.quantidade_despesa }}</td>
-                            <td>{{ despesa.custo }}</td>
-                            <td>{{ despesa.tipo_gasto }}</td>
-                            <td>{{ despesa.data_atualizacao }}</td>
-                        </tr>
-        
-                        {% empty %}
-                        <tr>
-                            <td colspan="3">Nenhum campo registrado</td>
-                        </tr>
-        
-        
-                        {% endfor %}
+        <div class="container">
 
+            <br><br><br>
 
+            <table class="table table-bordered" id="tabela_despesa_variavel" style="text-align: center ;">
+                <thead class="table-success">
+                    <tr>
+                        <th>Despesa</th>
+                        <th>Quantidade</th>
+                        <th>Custo</th>
+                        <th>Tipo de Gasto</th>
+                        <th>Data de Atualização</th>
+                    </tr>
+                </thead>
 
-
-
-
+                {% for despesa in despesa %}
+                <tr>
+                    <td>{{ despesa.nome_despesa }}</td>
+                    <td>{{ despesa.quantidade_despesa }}</td>
+                    <td>{{ despesa.custo }}</td>
+                    <td>{{ despesa.tipo_gasto}}</td>
+                    <td>{{ despesa.data_atualizacao }}</td>
+                </tr>
+                {% endfor %}
             </table>
+
+
+
+
+
         </div>
 
 
