@@ -21,8 +21,9 @@ urlpatterns = [
     # Estoque
     path('estoque',views.estoqueList, name='estoque'),
     path('estoque/adicionar', views.addProduct, name='estoque-adicionar'),
-    path('estoque/editar/<int:pk>', views.editProduct, name='estoque-editar'),
-    path('estoque/deletar/<int:pk>', views.delProduct, name='estoque-deletar'),
+    path('estoque/editar/', views.editProduct, name='estoque-editar'),
+    path('estoque/produto/<int:product_id>', views.viewProduct, name='produto-unico'),
+    path('estoque/deletar/<int:product_id>', views.delProduct, name='estoque-deletar'),
 
     # Despesa
     path('gastos', views.lista_despesa, name='gastos')

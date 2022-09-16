@@ -92,23 +92,27 @@ def addProduct(request):
     else:
         return render(request, 'cadastro\\add.html')
 
+def viewProduct(request, product_id):
+    product = ListaProdutos.objects.get(id = product_id)
+    if product != None:
+        return render(request, 'cadastro\\edit.html', {'produto':product})
 
 def editProduct(request):
     if request.method == "POST":
         product = ListaProdutos.objects.get(id = request.POST.get('id'))
         if product != None:
             product.nome_produto = request.POST.get('nome_produto')
-            product.quantidade_produto  = request.POST.get('quantidade_produto ')
+            product.quantidade_produto  = request.POST.get('quantidade_produto')
             product.custo_venda = request.POST.get('custo_venda')
             product.fornecedor = request.POST.get('fornecedor')
             product.data_adicao = request.POST.get('data_adicao')
             product.save()
-            return HttpResponseRedirect('estoque')
+            return HttpResponseRedirect('/estoque')
 
 def delProduct(request, product_id):
     product = ListaProdutos.objects.get(id = product_id)
     product.delete()
-    return HttpResponseRedirect('estoque')
+    return HttpResponseRedirect('/estoque')
 
 
 
