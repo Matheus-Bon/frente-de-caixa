@@ -183,23 +183,35 @@
 
     </script>
 
+
+
     <script>
 
-        $(document).ready(function () {
+        $("#prod").focusout(function(e){
+            e.preventDefault();
 
-            $('#prod').click(function () {
-                var id = $(this).attr('id');
-                $.get('paginas/vendas.html', function (resposta) {
-                    alert('funcionou?')
-                })
+            var nome_produto = $(this).val();
 
+            $.ajax({
+                type: 'GET',
+                url: "{% url 'validate_produto' %}",
+                success: function(response) {
+
+                    if(!response["valid"]){
+                        alert("Não tem esse produto");
+                        var nomeProduto = $("#prod");
+                        nomeProduto.val("")
+                        nomeProduto.focus()
+                    }
+                },
+
+                error: function(response) {
+                    console.log(response)
+                }
 
 
             })
-
-
         })
-
 
 
     </script>

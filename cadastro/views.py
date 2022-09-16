@@ -7,6 +7,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from .models import ListaDespesas, ListaProdutos
 from django.urls import reverse_lazy
+from django.http import JsonResponse
 
 
 
@@ -122,3 +123,24 @@ def delProduct(request, product_id):
 def lista_despesa(request):
     lista_despesa = ListaDespesas.objects.all()
     return render(request, "paginas/listas/gastos.html", {"despesa":lista_despesa})
+
+
+
+def is_ajax(request):
+    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+
+
+
+
+def checkProduto (request):
+    if is_ajax(request) and request.method == "GET":
+
+        nome_produto = request.GET.get("nome_produto", None)
+
+        if ListaProdutos.objects.filter(nome_produto = nome_produto).exists():
+            return JsonResponse({"valid":False}, status = 200)
+        
+        else:
+            return JsonResponse({"valid":True}, status = 200)
+    
+    return JsonResponse({} , status = 400)

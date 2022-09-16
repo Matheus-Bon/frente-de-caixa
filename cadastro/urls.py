@@ -1,9 +1,11 @@
+import imp
 from django.urls import path
-from .views import ProdutoCreate, DespesaCreate, ProdutoCreate1
+from .views import ProdutoCreate, DespesaCreate, ProdutoCreate1, checkProduto
 from .views import ProdutoUpdate, DespesaUpdate
 from .views import ProdutoDelete, DespesaDelete
 from .views import ProdutoList
 from . import views
+from .views import checkProduto
 
 
 urlpatterns = [
@@ -26,5 +28,10 @@ urlpatterns = [
     path('estoque/deletar/<int:product_id>', views.delProduct, name='estoque-deletar'),
 
     # Despesa
-    path('gastos', views.lista_despesa, name='gastos')
+    path('gastos', views.lista_despesa, name='gastos'),
+
+
+    #checkProduto
+
+    path('get/ajax/validate/produto', checkProduto, name='validate_produto' )
 ]
