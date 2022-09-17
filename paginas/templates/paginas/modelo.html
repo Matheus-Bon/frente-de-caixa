@@ -184,38 +184,36 @@
     </script>
 
 
-
+    <!-- Script AJAX para autenticação de produtos na label de vendas -->
     <script>
 
-        $("#prod").focusout(function(e){
-            e.preventDefault();
+        $.ajax({
 
-            var nome_produto = $(this).val();
-
-            $.ajax({
-                type: 'GET',
-                url: "{% url 'validate_produto' %}",
-                success: function(response) {
-
-                    if(!response["valid"]){
-                        alert("Não tem esse produto");
-                        var nomeProduto = $("#prod");
-                        nomeProduto.val("")
-                        nomeProduto.focus()
-                    }
-                },
-
-                error: function(response) {
-                    console.log(response)
-                }
+            url: 'http://127.0.0.1:8000/get/ajax/validate/produto',
+            type: "GET",
+            dataType: "json",
+            success: (data) => {
+                console.log(data);
+            },
+            error: (error) => {
+                console.log(error);
+            }
 
 
-            })
         })
 
 
     </script>
 
+    <script>
+
+        obj = JSON.parse('nome_produto')
+        console.log(obj.qtde)
+
+
+
+
+    </script>
 
 
 </body>
