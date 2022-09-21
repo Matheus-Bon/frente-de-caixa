@@ -200,26 +200,42 @@
             type: "GET",
             dataType: "json",
             success: (data) => {
-                $.each(data.produtos, (i, r) => { console.log(r.id, r.nome_produto, r.quantidade_produto); });
-                console.log(data);
+                $.each(data.produtos, (i, r) => {
+                    $('#prod').append('<option value="' + r.id + '" data-cod="">' + r.nome_produto + '</option>');
+                });
+
             },
             error: (error) => {
                 console.log(error);
             }
 
 
+
+
         })
+
 
 
     </script>
 
     <script>
+        /*         $.ajax({
+                    url: 'http://127.0.0.1:8000/get/ajax/validate/produto',
+                    type: 'GET',
+                    dataType: "json",
+                    success: (data) => { 
+                       var array =  Object.values(data)
+        
+                       console.log(array)
+                    }
+        
+                });
+        
+                $("#prod").select2({
+                    data: array,
+                }) */
 
 
-
-
-
-      
 
     </script>
 
