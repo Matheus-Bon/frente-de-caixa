@@ -1,0 +1,78 @@
+{% extends 'paginas/modelo.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>Gastos</title>
+<link rel="icon" type="image/x-icon" href="{% static 'imagens/game-solid-26.png' %}">
+{% endblock %}
+
+{% block conteudo %}
+
+<div class="home_content">
+    <div class="conteudo_pagina">
+
+        <div class="container">
+
+            <br><br><br>
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
+                Adicione Despesa Variável
+            </button>
+                
+            <br><br><br>  
+
+            <table class="table table-bordered" id="tabela_despesa" style="text-align: center ;">
+                <thead class="table-success">
+                    <tr>
+                        <th>Despesa</th>
+                        <th>Quantidade</th>
+                        <th>Custo</th>
+                        <th>Tipo de Gasto</th>
+                        <th>Data de Atualização</th>
+                        <th>Editar</th>
+                        <th>Deletar</th>
+                    </tr>
+                </thead>
+
+                {% for despesa in despesas %}
+                <tr>
+                    <td>{{ despesa.nome_despesa }}</td>
+                    <td>{{ despesa.quantidade_despesa }}</td>
+                    <td>{{ despesa.custo }}</td>
+                    <td>{{ despesa.tipo_gasto}}</td>
+                    <td>{{ despesa.data_atualizacao | date:'d/m/Y (H:i)'}}</td>
+                    <td>
+                        <a class="btn btn-sucess text-center" title="Editar Despesa">
+                            <i class='bx bx-edit'></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-secondary text-center" title="Deletar Despesa">
+                            <i class='bx bx-folder-minus'></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+
+        <!-- Tags de para incluir Modal de add e del de Despesas -->
+
+        {% include 'cadastro/add-despesa.html' %}
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}

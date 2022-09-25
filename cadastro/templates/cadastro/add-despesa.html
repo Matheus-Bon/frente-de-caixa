@@ -1,0 +1,86 @@
+<!-- Modal -->
+<div class="modal fade" {% block modal-id %} id='addModal' {% endblock modal-id %} tabindex="-1"
+    aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addModalLabel">
+                    {% block modal-title %} <i></i> &nbsp; &nbsp; Despesa Adicionada{% endblock modal-title %}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" {% block action %} action='/add_despesa' {% endblock action %} autocomplete="off">
+                {% csrf_token %}
+                <div class="modal-body">
+
+                    {% block Value-id %}{% endblock Value-id %}
+
+                    <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-light side-label"><i class='bx bx-add-to-queue'></i></span>
+                        <input type="text" class="form-control" name="nome" maxlength="40" placeholder="Nome da Despesa"
+                            required>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-light side-label"><i class='bx bxs-package'></i></span>
+                        <input type="text" class="form-control" name="quantidade" maxlength="40"
+                            placeholder="Quantidade da Despesa" required>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-light side-label"><i></i></span>
+                        <input type="text" class="form-control" name="custo" maxlength="40"
+                            placeholder="Custo da Despesa" required>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <label>
+                            <span class="btn border-secondary bg-light side-label" style="border-radius: 4px 0px 0px 4px ;">
+                                <i class='bx bxs-hourglass'></i>
+                            </span>
+                        </label>
+                        <select class="form-select" name="gasto" required>
+
+                            {% block option %} 
+                            <option hidden>Selecione o Tipo de Gasto</option>
+                            {% endblock option %}
+
+                            <option>Semanal</option>
+                            <option>Mensal</option>
+                            <option>Esporádico</option>
+
+                        </select>
+                    </div>
+
+<!--                     <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-light side-label"><i></i></span>
+                        <input type="text" class="form-control" name="data" maxlength="40"
+                            placeholder="Data de Adição (D/M/A (H))" required>
+                    </div> -->
+
+                    <div class="form-group">
+                        <textarea class="form-control" name="nota" rows="10" maxlength="1000" placeholder="Observação"></textarea>
+                    </div>
+
+                    <div class="mt-4" style="width: 100%;">
+
+                        <button type="submit" class="btn btn-secondary mb-3">
+                            {% block btn-action %}<i class='bx bxs-add-to-queue'></i> &nbsp;&nbsp; Adicionar Despesa{% endblock btn-action %}
+                        </button>
+
+                        <button type="reset" class="btn btn-outline-dark mb-3 ms-2" style="width: 50px;" title="Resetar">
+                            <i class='bx bx-reset' ></i>
+                        </button>
+
+                        <a href="{% url 'gastos' %}"type="button" class="btn btn-outline-dark mb-3 ms-2" style="width: 50px;" title="Fechar">
+                            <i class='bx bx-window-close' ></i>
+                        </a>
+                    </div>
+
+
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

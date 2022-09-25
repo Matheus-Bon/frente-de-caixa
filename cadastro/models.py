@@ -9,10 +9,11 @@ class ListaProdutos(models.Model):
     quantidade_produto = models.IntegerField(verbose_name='Qntd.')
     custo_venda = models.CharField(max_length=10, verbose_name='Custo/Venda')
     fornecedor = models.CharField(max_length=50, verbose_name='Fornecedor')
-    data_adicao = models.DateTimeField(verbose_name='Data de Adição')
+    data_adicao = models.DateTimeField(auto_now_add= True ,verbose_name='Data de Adição')
+    nota_produto = models.TextField()
 
     def __str__(self):
-        return "{} {} {} {} {}".format(self.nome_produto, self.quantidade_produto, self.custo_venda, self.fornecedor, self.data_adicao)
+        return "{} {} {} {} {}".format(self.nome_produto, self.quantidade_produto, self.custo_venda, self.fornecedor, self.data_adicao, self.nota_produto)
 
 
 
@@ -29,8 +30,9 @@ class ListaDespesas(models.Model):
     quantidade_despesa = models.CharField(max_length=50, verbose_name='Qntd.')
     custo = models.IntegerField(verbose_name='Custo')
     tipo_gasto = models.CharField(max_length=50, choices= GASTO, verbose_name='Tipo de Gasto')
-    data_atualizacao = models.DateTimeField(verbose_name='Data de Atualização')
+    data_atualizacao = models.DateTimeField(auto_now_add=True ,verbose_name='Data de Atualização')
+    nota_despesa = models.TextField()
 
     def __str__(self):
-        return "{} {} {} {} {}".format(self.nome_despesa, self.quantidade_despesa, self.custo, self.tipo_gasto, self.data_atualizacao)
+        return "{} {} {} {} {}".format(self.nome_despesa, self.quantidade_despesa, self.custo, self.tipo_gasto, self.data_atualizacao, self.nota_despesa)
 

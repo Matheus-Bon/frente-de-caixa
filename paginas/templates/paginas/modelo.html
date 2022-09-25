@@ -101,7 +101,7 @@
 
     <div class="home_title">
 
-        {% if request.path == '/vendas/' %}
+        {% if request.path == '/vendas' %}
         <div class="titulo_pagina">Vendas</div>
 
 
@@ -113,7 +113,7 @@
         <div class="titulo_pagina">Gastos</div>
 
 
-        {% elif request.path == '/relatorios/' %}
+        {% elif request.path == '/relatorios' %}
         <div class="titulo_pagina">Relatórios</div>
         {% endif %}
 
@@ -175,7 +175,7 @@
 
     <!-- Configurações da tabela de despesas variáveis na página de gastos -->
     <script>
-        $("#tabela_despesa_variavel").DataTable({
+        $("#tabela_despesa").DataTable({
 
             paging: true,
             pageLength: 5,
@@ -192,52 +192,45 @@
 
 
     <!-- Script AJAX para autenticação de produtos na label de vendas -->
+
     <script>
 
-        $.ajax({
+        $.getJSON("http://127.0.0.1:8000/get/ajax/validate/produto", function(data){
+            console.log(data);
+            $.each(data.produtos,(i,r)=>{
+                $("#prod").append(
+                    '<option value="'+r.id+'">'+r.nome_produto+' (R$ 2,50) <option>'
+                )
+            });
 
-            url: 'http://127.0.0.1:8000/get/ajax/validate/produto',
-            type: "GET",
-            dataType: "json",
-            success: (data) => {
-                $.each(data.produtos, (i, r) => {
-                    $('#prod').append('<option value="' + r.id + '" data-cod="">' + r.nome_produto + '</option>');
-                });
-
-            },
-            error: (error) => {
-                console.log(error);
-            }
-
-
-
-
+            $("#prod").select2()
+        });
+        $("#prod").on('change', ()=>{
+            let s = $("#prod option:selected");
+            console.log(s.text(),s.val());
         })
 
-
-
+        
     </script>
 
-    <script>
-        /*         $.ajax({
-                    url: 'http://127.0.0.1:8000/get/ajax/validate/produto',
-                    type: 'GET',
-                    dataType: "json",
-                    success: (data) => { 
-                       var array =  Object.values(data)
-        
-                       console.log(array)
-                    }
-        
-                });
-        
-                $("#prod").select2({
-                    data: array,
-                }) */
 
 
 
-    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </body>

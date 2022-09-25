@@ -1,76 +1,89 @@
-from itertools import product
-from django.http import HttpResponseRedirect
-import imp
-from multiprocessing import context
+
+from dataclasses import fields
+import json
+from unittest import result
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic.list import ListView
 from .models import ListaDespesas, ListaProdutos
-from django.urls import reverse_lazy
 from django.http import JsonResponse, HttpResponseBadRequest
+from django.contrib import messages
 
 
 
 
-""" Views """
 
-class ProdutoCreate(CreateView):
-    model = ListaProdutos
-    fields = ['nome_produto', 'quantidade_produto', 'custo_venda', 'fornecedor', 'data_adicao']
-    template_name = 'cadastro/form.html'
-    success_url = reverse_lazy('lista-produto')
-
-class DespesaCreate(CreateView):
-    model = ListaDespesas
-    fields = ['nome_despesa', 'quantidade_despesa', 'custo', 'tipo_gasto', 'data_atualizacao']
-    template_name = 'cadastro/form.html'
-    success_url = reverse_lazy('lista-despesa')
+""" Configurações do CRUD da parte de Despesa FIXA e VARIÁVEL """
 
 
-class ProdutoCreate1(CreateView):
-    model = ListaProdutos
-    fields = ['nome_produto', 'quantidade_produto', 'custo_venda', 'fornecedor', 'data_adicao']
-    template_name = 'cadastro/form1.html'
-
-""" Update """
-
-class ProdutoUpdate(UpdateView):
-    model = ListaProdutos
-    fields = ['nome_produto', 'quantidade_produto', 'custo_venda', 'fornecedor', 'data_adicao']
-    template_name = 'paginas/listas/estoque.html'
-    success_url = reverse_lazy('lista-produto')
-
-    
-class DespesaUpdate(UpdateView):
-    model = ListaDespesas
-    fields = ['nome_despesa', 'quantidade_despesa', 'custo', 'tipo_gasto', 'data_atualizacao']
-    template_name = 'cadastro/form.html'
-    success_url = reverse_lazy('lista-despesa')
+def despesa_List(request):
+    despesa_list = ListaDespesas.objects.all()
+    return render(request, "paginas/gastos.html", {'despesas': despesa_list })
 
 
-""" Delete """
-
-class ProdutoDelete(DeleteView):
-    model = ListaProdutos
-    template_name = 'cadastro/form-excluir.html'
-    success_url = reverse_lazy('lista-produto')
-
-class DespesaDelete(DeleteView):
-    model = ListaDespesas
-    template_name = 'cadastro/form-excluir.html'
-    succes_url = reverse_lazy('lista-despesa')
+#----------# Função ADD Despesa #----------#
 
 
-""" Lista """
+def add_despesa(request):
+    if request.method =="POST":
+        if request.POST.get('nome_despesa') \
+            and request.POST.get('quantidade_despesa') \
+            and request.POST.get('custo') \
+            and request.POST.get('tipo_gasto') \
+            and request.POST.get('data_atualizacao') \
+            or request.POST.get('nota_despesa'):
+            
+            despesa = ListaDespesas()
+            despesa.nome_despesa = request.POST.get('nome_despesa')
+            despesa.quantidade_despesa = request.POST.get('quantidade_despesa')
+            despesa.custo = request.POST.get('custo')
+            despesa.tipo_gasto = request.POST.get('tipo_gasto')
+            despesa.data_atualizacao = request.POST.get('data_atualizacao')
+            despesa.nota_despesa = request.POST.get('nota_despesa')
+            despesa.save()
+            messages.success(request, "Despesa adicionada com sucesso!")
+            return HttpResponseRedirect("/gastos")
+    else:
+        return render(request, 'cadastro \\ add-despesa.html')
 
-class ProdutoList(ListView):
-    model = ListaProdutos
-    template_name = 'paginas/listas/estoque.html'
+
+#----------# Função VIEW Despesa #----------#
 
 
-###class DespesaList(ListView):
-   ### model = ListaDespesas
-    ###template_name = 'paginas/listas/gastos.html'
+def despesa(request, despesas_id):
+    despesa =  ListaDespesas.objects.get(id = despesas_id)
+    if despesa != None:
+        return render(request, "cadastro \\ edit-despesa.html", {'despesa':despesa})
+
+
+#----------# Função EDIT Despesa #----------#
+
+def edit_despesa(request):
+    if request.method == 'POST':
+        despesa = ListaDespesas.objects.get(id = request.POST.get('id'))
+        if despesa != None:
+            despesa.nome_despesa = request.POST.get('nome_despesa')
+            despesa.quantidade_despesa = request.POST.get('quantidade_despesa')
+            despesa.custo = request.POST.get('custo')
+            despesa.tipo_gasto = request.POST.get('tipo_gasto')
+            despesa.data_atualizacao = request.POST.get('data_atualizacao')
+            despesa.nota_despesa = request.POST.get('nota_despesa')
+            despesa.save()
+            messages.success(request, "Despesa atualizada com sucesso!")
+            return HttpResponseRedirect("/gastos")
+            
+
+#----------# Função DELETE Despesa #----------#
+
+def delete_despesa(request, despesa_id):
+    despesa = ListaDespesas.objects.get(id = despesa_id)
+    despesa.delete()
+    messages.success(request, "Despesa deletada com sucesso!")
+    return HttpResponseRedirect("/gastos")
+
+
+
+
+
 
 
 
@@ -78,13 +91,14 @@ class ProdutoList(ListView):
 
 def estoqueList(request):
     qs = ListaProdutos.objects.all()
-    return render(request, "paginas/listas/estoque.html", {'object_list':qs})
+    return render(request, "paginas/estoque.html", {'object_list': qs})
+
 
 def addProduct(request):
     if request.method == "POST":
         product = ListaProdutos()
         product.nome_produto = request.POST.get('nome_produto')
-        product.quantidade_produto  = request.POST.get('quantidade_produto')
+        product.quantidade_produto = request.POST.get('quantidade_produto')
         product.custo_venda = request.POST.get('custo_venda')
         product.fornecedor = request.POST.get('fornecedor')
         product.data_adicao = request.POST.get('data_adicao')
@@ -93,53 +107,70 @@ def addProduct(request):
     else:
         return render(request, 'cadastro\\add.html')
 
+
 def viewProduct(request, product_id):
-    product = ListaProdutos.objects.get(id = product_id)
+    product = ListaProdutos.objects.get(id=product_id)
     if product != None:
-        return render(request, 'cadastro\\edit.html', {'produto':product})
+        return render(request, 'cadastro\\edit.html', {'produto': product})
+
 
 def editProduct(request):
     if request.method == "POST":
-        product = ListaProdutos.objects.get(id = request.POST.get('id'))
+        product = ListaProdutos.objects.get(id=request.POST.get('id'))
         if product != None:
             product.nome_produto = request.POST.get('nome_produto')
-            product.quantidade_produto  = request.POST.get('quantidade_produto')
+            product.quantidade_produto = request.POST.get('quantidade_produto')
             product.custo_venda = request.POST.get('custo_venda')
             product.fornecedor = request.POST.get('fornecedor')
             product.data_adicao = request.POST.get('data_adicao')
             product.save()
             return HttpResponseRedirect('/estoque')
 
+
 def delProduct(request, product_id):
-    product = ListaProdutos.objects.get(id = product_id)
+    product = ListaProdutos.objects.get(id=product_id)
     product.delete()
     return HttpResponseRedirect('/estoque')
 
 
 
 
+
+
+
+
+
+
+
+
 """ Configuração da views para Despesas """
+
 
 def lista_despesa(request):
     lista_despesa = ListaDespesas.objects.all()
-    return render(request, "paginas/listas/gastos.html", {"despesa":lista_despesa})
-
+    return render(request, "paginas/gastos.html", {"despesa": lista_despesa})
 
 
 def is_ajax(request):
     return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 
 
-
-
-def checkProduto (request):
-    
+def checkProduto(request):
     if is_ajax:
         if request.method == 'GET':
             produtos = list(ListaProdutos.objects.all().values())
             return JsonResponse({'produtos': produtos})
-        
+
         return JsonResponse({'status': 'Invalid request'}, status=400)
 
     else:
         return HttpResponseBadRequest('Invalid request')
+
+
+def checkProduto2(request):
+    result = ListaProdutos.objects.all()
+    serialized_data = json.dumps(list(result), default=str)
+
+    return JsonResponse({'PRODUTOS': serialized_data})
+
+    # return HttpResponse(serialized_data)
