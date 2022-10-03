@@ -15,14 +15,14 @@ urlpatterns = [
 
 
     # URLs da parte do CRUD em Despesas
-    path('gastos', views.despesa_List, name='gasto'),
+    path('gastos', views.despesa_List, name='gastos'),
     path('add_despesa', views.add_despesa, name="add_despesa"),
     path('despesa/<str:despesa_id>', views.despesa, name='despesa'),
     path('edit_despesa', views.edit_despesa, name='edit_despesa'),
     path('delete_despesa/<str:despesa_id>', views.delete_despesa, name='delete_despesa'),
 
 
-    #checkProduto
+    # checkProduto
 
     path('get/ajax/validate/produto', checkProduto, name='validate_produto' )
 ]

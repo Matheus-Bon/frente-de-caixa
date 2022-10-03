@@ -66,9 +66,9 @@
             <li>
                 <a href="{% url 'gastos' %}">
                     <i class='bx bx-money-withdraw'></i>
-                    <span class="links_name">Gastos</span>
+                    <span class="links_name">Contas a Pagar</span>
                 </a>
-                <span class="tooltip">Gastos</span>
+                <span class="tooltip">Contas a Pagar</span>
             </li>
             <li>
                 <a href="{% url 'relatorios' %}">
@@ -110,7 +110,7 @@
 
 
         {% elif request.path == '/gastos' %}
-        <div class="titulo_pagina">Gastos</div>
+        <div class="titulo_pagina">Contas a Pagar</div>
 
 
         {% elif request.path == '/relatorios' %}
@@ -193,7 +193,7 @@
 
     <!-- Script AJAX para autenticação de produtos na label de vendas -->
 
-    <script>
+<!--     <script>
 
         $.getJSON("http://127.0.0.1:8000/get/ajax/validate/produto", function(data){
             console.log(data);
@@ -211,7 +211,7 @@
         })
 
         
-    </script>
+    </script>  -->
 
 
 

@@ -32,13 +32,11 @@
             </div>
         </div>
         <div class="table-responsive">
-            <table class="table table-striped" id="tabela_despesa_variavel">
+            <table class="table table-striped" id="tabela_despesa">
                 <tr>
                     <th>Código</th>
                     <th>Produto</th>
                     <th>Qntd.</th>
-                    <th>Custo/Venda</th>
-                    <th>Fornecedor</th>
                     <th>Data de Adição</th>
                     <th> <a type="button" data-bs-toggle="modal" data-bs-target="#addModal">
                             <box-icon name='list-plus'></box-icon>
@@ -52,8 +50,6 @@
                     <td>{{ produto.pk }}</td>
                     <td>{{ produto.nome_produto }}</td>
                     <td>{{ produto.quantidade_produto }}</td>
-                    <td>{{ produto.custo_venda }}</td>
-                    <td>{{ produto.fornecedor }}</td>
                     <td>{{ produto.data_adicao }}</td>
                     <td><a type="button" data-bs-toggle="modal" data-bs-target="#editModal{{ produto.pk }}">
                             <box-icon name='edit'></box-icon>
@@ -84,13 +80,6 @@
 
 
             {% endfor %}
-        </div>
-        <!-- <a href="">
-            <box-icon name='list-plus'></box-icon>
-        </a> -->
-    </div>
-    <script>
-        alert('hello word')
-    </script>
+
 
     {% endblock %}

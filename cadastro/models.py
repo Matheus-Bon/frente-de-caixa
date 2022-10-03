@@ -7,13 +7,11 @@ from django.db import models
 class ListaProdutos(models.Model):
     nome_produto = models.CharField(max_length=50, verbose_name='Produto')
     quantidade_produto = models.IntegerField(verbose_name='Qntd.')
-    custo_venda = models.CharField(max_length=10, verbose_name='Custo/Venda')
-    fornecedor = models.CharField(max_length=50, verbose_name='Fornecedor')
     data_adicao = models.DateTimeField(auto_now_add= True ,verbose_name='Data de Adição')
     nota_produto = models.TextField()
 
     def __str__(self):
-        return "{} {} {} {} {}".format(self.nome_produto, self.quantidade_produto, self.custo_venda, self.fornecedor, self.data_adicao, self.nota_produto)
+        return "{} {} {} {} {}".format(self.nome_produto, self.quantidade_produto,self.data_adicao, self.nota_produto)
 
 
 

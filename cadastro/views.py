@@ -41,18 +41,18 @@ def add_despesa(request):
             despesa.nota_despesa = request.POST.get('nota_despesa')
             despesa.save()
             messages.success(request, "Despesa adicionada com sucesso!")
-            return HttpResponseRedirect("/gastos")
+            return HttpResponseRedirect('/gastos')
     else:
-        return render(request, 'cadastro \\ add-despesa.html')
+            return render(request, 'cadastro/add-despesa.html')
 
 
 #----------# Função VIEW Despesa #----------#
 
 
 def despesa(request, despesas_id):
-    despesa =  ListaDespesas.objects.get(id = despesas_id)
-    if despesa != None:
-        return render(request, "cadastro \\ edit-despesa.html", {'despesa':despesa})
+    despesas =  ListaDespesas.objects.get(id = despesas_id)
+    if despesas != None:
+        return render(request, "cadastro \\ edit-despesa.html", {'despesa':despesas})
 
 
 #----------# Função EDIT Despesa #----------#
@@ -142,13 +142,7 @@ def delProduct(request, product_id):
 
 
 
-
-""" Configuração da views para Despesas """
-
-
-def lista_despesa(request):
-    lista_despesa = ListaDespesas.objects.all()
-    return render(request, "paginas/gastos.html", {"despesa": lista_despesa})
+""" Configuração dO JSON para Despesas """
 
 
 def is_ajax(request):
