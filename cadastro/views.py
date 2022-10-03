@@ -43,7 +43,7 @@ def add_despesa(request):
             messages.success(request, "Despesa adicionada com sucesso!")
             return HttpResponseRedirect('/gastos')
     else:
-            return render(request, 'cadastro/add-despesa.html')
+            return render(request, 'cadastro\\add-despesa.html')
 
 
 #----------# Função VIEW Despesa #----------#

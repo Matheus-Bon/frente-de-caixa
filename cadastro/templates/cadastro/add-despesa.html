@@ -17,13 +17,13 @@
 
                     <div class="input-group mb-3">
                         <span class="btn border-secondary bg-light side-label"><i class='bx bx-add-to-queue'></i></span>
-                        <input type="text" class="form-control" name="nome" maxlength="40" placeholder="Nome da Despesa"
-                            required>
+                        <input type="text" class="form-control" name="nome_despesa" maxlength="40"
+                            placeholder="Nome da Despesa" required>
                     </div>
 
                     <div class="input-group mb-3">
                         <span class="btn border-secondary bg-light side-label"><i class='bx bxs-package'></i></span>
-                        <input type="text" class="form-control" name="quantidade" maxlength="40"
+                        <input type="text" class="form-control" name="quantidade_despesa" maxlength="40"
                             placeholder="Quantidade da Despesa" required>
                     </div>
 
@@ -35,13 +35,14 @@
 
                     <div class="input-group mb-3">
                         <label>
-                            <span class="btn border-secondary bg-light side-label" style="border-radius: 4px 0px 0px 4px ;">
+                            <span class="btn border-secondary bg-light side-label"
+                                style="border-radius: 4px 0px 0px 4px ;">
                                 <i class='bx bxs-hourglass'></i>
                             </span>
                         </label>
-                        <select class="form-select" name="gasto" required>
+                        <select class="form-select" name="tipo_gasto" required>
 
-                            {% block option %} 
+                            {% block option %}
                             <option hidden>Selecione o Tipo de Gasto</option>
                             {% endblock option %}
 
@@ -52,28 +53,32 @@
                         </select>
                     </div>
 
-<!--                     <div class="input-group mb-3">
+                    <div class="input-group mb-3">
                         <span class="btn border-secondary bg-light side-label"><i></i></span>
-                        <input type="text" class="form-control" name="data" maxlength="40"
+                        <input type="text" class="form-control" name="data_atualizacao" maxlength="40"
                             placeholder="Data de Adição (D/M/A (H))" required>
-                    </div> -->
+                    </div>
 
                     <div class="form-group">
-                        <textarea class="form-control" name="nota" rows="10" maxlength="1000" placeholder="Observação"></textarea>
+                        <textarea class="form-control" name="nota_despesa" rows="10" maxlength="1000"
+                            placeholder="Observação"></textarea>
                     </div>
 
                     <div class="mt-4" style="width: 100%;">
 
                         <button type="submit" class="btn btn-secondary mb-3">
-                            {% block btn-action %}<i class='bx bxs-add-to-queue'></i> &nbsp;&nbsp; Adicionar Despesa{% endblock btn-action %}
+                            {% block btn-action %}<i class='bx bxs-add-to-queue'></i> &nbsp;&nbsp; Adicionar
+                            Despesa{% endblock btn-action %}
                         </button>
 
-                        <button type="reset" class="btn btn-outline-dark mb-3 ms-2" style="width: 50px;" title="Resetar">
-                            <i class='bx bx-reset' ></i>
+                        <button type="reset" class="btn btn-outline-dark mb-3 ms-2" style="width: 50px;"
+                            title="Resetar">
+                            <i class='bx bx-reset'></i>
                         </button>
 
-                        <a href="{% url 'gastos' %}"type="button" class="btn btn-outline-dark mb-3 ms-2" style="width: 50px;" title="Fechar">
-                            <i class='bx bx-window-close' ></i>
+                        <a href="{% url 'gastos' %}" type="button" class="btn btn-outline-dark mb-3 ms-2"
+                            style="width: 50px;" title="Fechar">
+                            <i class='bx bx-window-close'></i>
                         </a>
                     </div>
 
