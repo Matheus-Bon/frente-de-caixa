@@ -43,7 +43,7 @@
                     <td>{{ despesa.tipo_gasto}}</td>
                     <td>{{ despesa.data_atualizacao | date:'d/m/Y (H:i)'}}</td>
                     <td>
-                        <a class="btn btn-sucess text-center" title="Editar Despesa">
+                        <a class="btn btn-sucess text-center" title="Editar Despesa" data-bs-toggle="modal" data-bs-target="#editModal">
                             <i class='bx bx-edit'></i>
                         </a>
                     </td>
@@ -53,6 +53,10 @@
                         </a>
                     </td>
                 </tr>
+
+                {% include 'cadastro/edit-despesa.html' %}
+
+
                 {% endfor %}
                 
             </table>
@@ -63,6 +67,20 @@
 
         {% include 'cadastro/add-despesa.html' %}
         
+
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+                <script>
+                        var m = "{{ message }}";
+                        swal("Perfeito !", m, "success");
+
+
+                </script>
+
+            {% endif %}
+        {% endfor %}
 
 
 

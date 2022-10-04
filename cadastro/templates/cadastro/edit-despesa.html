@@ -1,0 +1,46 @@
+{% extends 'cadastro/add-despesa.html' %}
+
+<!-- Modal ID -->
+{% block modal-id %} id='editModal' {% endblock modal-id %}
+
+<!-- Modal Title -->
+{% block modal-title %} <i></i> &nbsp; &nbsp; Despesa Editada{% endblock modal-title %}
+
+<!-- Form Action -->
+{% block action %} action='/edit_despesa' {% endblock action %}
+
+<!-- Button Action -->
+{% block btn-action %}<i class='bx bxs-add-to-queue'></i> &nbsp;&nbsp; Salvar Mudanças{% endblock btn-action %}
+
+<!-- INPUTs -->
+
+<!-- Edit Input Genérico -->
+{% block Value-id %}
+<div class="input-group mb-3">
+    <span class="btn border-secondary bg-light side-label"><i class='bx bx-add-to-queue'></i></span>
+    <input type="text" class="form-control" value="{{ despesa.id }}" name="id" readonly>
+</div>
+{% endblock Value-id %}
+
+<!-- Edit Input Nome Despesa  -->
+{% block Value-Nome %} value="{{ despesa.nome_despesa }}" {% endblock Value-Nome %}
+
+<!-- Edit Input Quantiade Despesa  -->
+{% block Value-Quantidade %} value="{{ despesa.quantidade_despesa }}" {% endblock Value-Quantidade %}
+
+<!-- Edit Input Custo Despesa  -->
+{% block Value-Custo %} value="{{ despesa.custo }}" {% endblock Value-Custo %}
+
+<!-- Edit Input Tipo Gasto Despesa  -->
+{% block option %}
+<option style="background-color: #d3d3d3; counter-reset: #111">{{ despesa.tipo_gasto }}</option>
+{% endblock option %}
+
+<!-- Edit Input Data Despesa  -->
+{% block Value-Data %} value="{{ despesa.data_atualizacao}}" {% endblock Value-Data %}
+
+<!-- Edit Input Nota  -->
+{% block Nota %}{{ despesa.nota_despesa }}{% endblock Nota %}
+
+
+

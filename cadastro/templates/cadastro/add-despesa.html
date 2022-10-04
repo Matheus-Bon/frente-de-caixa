@@ -17,20 +17,17 @@
 
                     <div class="input-group mb-3">
                         <span class="btn border-secondary bg-light side-label"><i class='bx bx-add-to-queue'></i></span>
-                        <input type="text" class="form-control" name="nome_despesa" maxlength="40"
-                            placeholder="Nome da Despesa" required>
+                        <input type="text" class="form-control" name="nome_despesa" maxlength="40" placeholder="Nome da Despesa" required {% block Value-Nome %}{% endblock Value-Nome %}>
                     </div>
 
                     <div class="input-group mb-3">
                         <span class="btn border-secondary bg-light side-label"><i class='bx bxs-package'></i></span>
-                        <input type="text" class="form-control" name="quantidade_despesa" maxlength="40"
-                            placeholder="Quantidade da Despesa" required>
+                        <input type="text" class="form-control" name="quantidade_despesa" maxlength="40" placeholder="Quantidade da Despesa" required {% block Value-Quantidade %}{% endblock Value-Quantidade %}>
                     </div>
 
                     <div class="input-group mb-3">
                         <span class="btn border-secondary bg-light side-label"><i></i></span>
-                        <input type="text" class="form-control" name="custo" maxlength="40"
-                            placeholder="Custo da Despesa" required>
+                        <input type="text" class="form-control" name="custo" maxlength="40" placeholder="Custo da Despesa" required {% block Value-Custo %}{% endblock Value-Custo %}>
                     </div>
 
                     <div class="input-group mb-3">
@@ -56,12 +53,12 @@
                     <div class="input-group mb-3">
                         <span class="btn border-secondary bg-light side-label"><i></i></span>
                         <input type="text" class="form-control" name="data_atualizacao" id="data" maxlength="40"
-                            placeholder="Data de Adição (D/M/A (H))" required>
+                            placeholder="Data de Adição (D/M/A (H))" required {% block Value-Data %}{% endblock Value-Data %}>
                     </div>
 
                     <div class="form-group">
                         <textarea class="form-control" name="nota_despesa" rows="10" maxlength="1000"
-                            placeholder="Observação"></textarea>
+                            placeholder="Observação opcional" {% block Nota %}{% endblock Nota %}></textarea>
                     </div>
 
                     <div class="mt-4" style="width: 100%;">
