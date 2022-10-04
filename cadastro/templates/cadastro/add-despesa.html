@@ -55,7 +55,7 @@
 
                     <div class="input-group mb-3">
                         <span class="btn border-secondary bg-light side-label"><i></i></span>
-                        <input type="text" class="form-control" name="data_atualizacao" maxlength="40"
+                        <input type="text" class="form-control" name="data_atualizacao" id="data" maxlength="40"
                             placeholder="Data de Adição (D/M/A (H))" required>
                     </div>
 
@@ -89,3 +89,20 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous">
+    </script>
+
+<script>
+    let d = new Date
+    let day = d.getDate()
+    let month = d.getMonth()
+    let year = d.getFullYear()
+    let hours = d.getHours()
+    let minutes = d.getMinutes()
+
+    let date = `${day}-${month + 1}-${year} ${hours}-${minutes}`
+
+    document.getElementById('data').value = date
+</script>

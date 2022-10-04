@@ -28,7 +28,7 @@ class ListaDespesas(models.Model):
     quantidade_despesa = models.CharField(max_length=50, verbose_name='Qntd.')
     custo = models.IntegerField(verbose_name='Custo')
     tipo_gasto = models.CharField(max_length=50, choices= GASTO, verbose_name='Tipo de Gasto')
-    data_atualizacao = models.DateTimeField(auto_now_add=True ,verbose_name='Data de Atualização')
+    data_atualizacao = models.DateTimeField(auto_now_add=True)
     nota_despesa = models.TextField()
 
     def __str__(self):
