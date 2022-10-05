@@ -17,17 +17,20 @@
 
                     <div class="input-group mb-3">
                         <span class="btn border-secondary bg-light side-label"><i class='bx bx-add-to-queue'></i></span>
-                        <input type="text" class="form-control" name="nome_despesa" maxlength="40" placeholder="Nome da Despesa" required {% block Value-Nome %}{% endblock Value-Nome %}>
+                        <input type="text" class="form-control" name="nome_despesa" maxlength="40"
+                            placeholder="Nome da Despesa" required {% block Value-Nome %}{% endblock Value-Nome %}>
                     </div>
 
                     <div class="input-group mb-3">
                         <span class="btn border-secondary bg-light side-label"><i class='bx bxs-package'></i></span>
-                        <input type="text" class="form-control" name="quantidade_despesa" maxlength="40" placeholder="Quantidade da Despesa" required {% block Value-Quantidade %}{% endblock Value-Quantidade %}>
+                        <input type="text" class="form-control" name="quantidade_despesa" maxlength="40"
+                            placeholder="Quantidade da Despesa" required {% block Value-Quantidade %} {% endblock Value-Quantidade %}>
                     </div>
 
                     <div class="input-group mb-3">
-                        <span class="btn border-secondary bg-light side-label"><i></i></span>
-                        <input type="text" class="form-control" name="custo" maxlength="40" placeholder="Custo da Despesa" required {% block Value-Custo %}{% endblock Value-Custo %}>
+                        <span class="btn border-secondary bg-light side-label"><i class='bx bxs-dollar-circle'></i></span>
+                        <input type="text" class="form-control" name="custo" maxlength="40"
+                            placeholder="Custo da Despesa" required {% block Value-Custo %}{% endblock Value-Custo %}>
                     </div>
 
                     <div class="input-group mb-3">
@@ -51,9 +54,9 @@
                     </div>
 
                     <div class="input-group mb-3">
-                        <span class="btn border-secondary bg-light side-label"><i></i></span>
-                        <input type="text" class="form-control" name="data_atualizacao" id="data" maxlength="40"
-                            placeholder="Data de Adição (D/M/A (H))" required {% block Value-Data %}{% endblock Value-Data %}>
+                        <span class="btn border-secondary bg-light side-label"><i class='bx bxs-calendar'></i></span>
+                        <input type="text" class="form-control" name="data_atualizacao" maxlength="40"
+                            placeholder="Data de Adição (D/M/A (H))" required {% block Value-Data %} id="data" {% endblock Value-Data %}>
                     </div>
 
                     <div class="form-group">
@@ -92,14 +95,28 @@
     </script>
 
 <script>
-    let d = new Date
-    let day = d.getDate()
-    let month = d.getMonth()
-    let year = d.getFullYear()
-    let hours = d.getHours()
-    let minutes = d.getMinutes()
+    // let d = new Date
+    // let day = d.getDate()
+    // let month = d.getMonth()
+    // let year = d.getFullYear()
+    // let hours = d.getHours()
+    // let minutes = d.getMinutes()
 
-    let date = `${day}-${month + 1}-${year} ${hours}-${minutes}`
+    // let date = `${day}-${month + 1}-${year} ${hours}-${minutes}`
 
-    document.getElementById('data').value = date
+    Number.prototype.padLeft = function (base, chr) {
+        let len = (String(base || 10).length - String(this).length) + 1;
+        return len > 0 ? new Array(len).join(chr || '0') + this : this;
+    }
+
+
+    var d = new Date,
+        dformat = [d.getFullYear(), (d.getMonth() + 1).padLeft(),
+        d.getDate().padLeft(),
+        ].join('-') + ' ' +
+            [d.getHours().padLeft(),
+            d.getMinutes().padLeft()].join(':');
+
+
+    document.getElementById('data').value = dformat
 </script>

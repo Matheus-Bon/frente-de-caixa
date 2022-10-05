@@ -1,7 +1,7 @@
 {% extends 'cadastro/add-despesa.html' %}
 
 <!-- Modal ID -->
-{% block modal-id %} id='editModal' {% endblock modal-id %}
+{% block modal-id %} id='editModal{{ despesa.id }}' {% endblock modal-id %}
 
 <!-- Modal Title -->
 {% block modal-title %} <i></i> &nbsp; &nbsp; Despesa Editada{% endblock modal-title %}
@@ -37,10 +37,11 @@
 {% endblock option %}
 
 <!-- Edit Input Data Despesa  -->
-{% block Value-Data %} value="{{ despesa.data_atualizacao}}" {% endblock Value-Data %}
+{% block Value-Data %} value="{{ despesa.data_atualizacao}}"{% endblock Value-Data %}
 
 <!-- Edit Input Nota  -->
 {% block Nota %}{{ despesa.nota_despesa }}{% endblock Nota %}
+
 
 
 

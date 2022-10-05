@@ -11,7 +11,7 @@ class ListaProdutos(models.Model):
     nota_produto = models.TextField()
 
     def __str__(self):
-        return "{} {} {} {} {}".format(self.nome_produto, self.quantidade_produto,self.data_adicao, self.nota_produto)
+        return "{} {} {} {}".format(self.nome_produto, self.quantidade_produto,self.data_adicao, self.nota_produto)
 
 
 

@@ -8,7 +8,7 @@
 
 {% block conteudo %}
 
-<div class="home_content">
+<div class="home_content" style="top: 30px">
     <div class="conteudo_pagina">
 
         <div class="container">
@@ -18,12 +18,13 @@
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
                 Adicione Despesa Variável
             </button>
-                
-            <br><br><br>  
+
+            <br><br><br>
 
             <table class="table table-bordered" id="tabela_despesa" style="text-align: center ;">
                 <thead class="table-success">
                     <tr>
+                        <th style="display: none;">ID</th>
                         <th>Despesa</th>
                         <th>Quantidade</th>
                         <th>Custo</th>
@@ -34,22 +35,24 @@
                     </tr>
                 </thead>
 
-                
+
                 {% for despesa in despesas %}
                 <tr>
+                    <td style="display: none;">{{ despesa.id }}</td>
                     <td>{{ despesa.nome_despesa }}</td>
                     <td>{{ despesa.quantidade_despesa }}</td>
                     <td>{{ despesa.custo }}</td>
                     <td>{{ despesa.tipo_gasto}}</td>
                     <td>{{ despesa.data_atualizacao | date:'d/m/Y (H:i)'}}</td>
                     <td>
-                        <a class="btn btn-sucess text-center" title="Editar Despesa" data-bs-toggle="modal" data-bs-target="#editModal">
-                            <i class='bx bx-edit'></i>
+                        <a class="btn btn-sucess text-center" title="Editar Despesa" data-bs-toggle="modal"
+                            data-bs-target="#editModal{{ despesa.id }}">
+                            <box-icon name='edit'></box-icon>
                         </a>
                     </td>
                     <td>
-                        <a class="btn btn-secondary text-center" title="Deletar Despesa">
-                            <i class='bx bx-folder-minus'></i>
+                        <a class="btn text-center" title="Deletar Despesa">
+                            <box-icon name='trash'></box-icon>
                         </a>
                     </td>
                 </tr>
@@ -58,7 +61,7 @@
 
 
                 {% endfor %}
-                
+
             </table>
 
         </div>
@@ -66,20 +69,20 @@
         <!-- Tags de para incluir Modal de add e del de Despesas -->
 
         {% include 'cadastro/add-despesa.html' %}
-        
+
 
         {% for message in messages %}
-            {% if message.tags == 'success' %}
-                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        {% if message.tags == 'success' %}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-                <script>
-                        var m = "{{ message }}";
-                        swal("Perfeito !", m, "success");
+        <script>
+            var m = "{{ message }}";
+            swal("Perfeito !", m, "success");
 
 
-                </script>
+        </script>
 
-            {% endif %}
+        {% endif %}
         {% endfor %}
 
 

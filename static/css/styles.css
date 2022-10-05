@@ -486,7 +486,7 @@
 /*----------------------------------------*/
 
 .swaç-modal {
-    background-color: rgb(0,0, 0.651);
+    background-color: rgb(0, 0, 0.651);
     color: #fff;
 }
 
@@ -514,7 +514,7 @@
     box-shadow: none;
 }
 
-.swal-button:not([disable]):hover{
+.swal-button:not([disable]):hover {
     background: transparent;
     color: #fff;
     border: 1px solid #198754;
@@ -526,6 +526,7 @@
     background: none !important;
 }
 
-.swal-icon--success:before, .swal-icon--success:after{
+.swal-icon--success:before,
+.swal-icon--success:after {
     background: none !important;
 }

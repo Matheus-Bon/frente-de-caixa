@@ -1,67 +1,33 @@
-{% load static %}
+{% extends 'cadastro/add.html' %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
+<!-- Modal ID -->
+{% block modal-id %} id='editModal{{ produto.id }}' {% endblock modal-id %}
 
-<head>
-    <link>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Modal Title -->
+{% block modal-title %} <i></i> &nbsp; &nbsp; Despesa Editada{% endblock modal-title %}
 
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<!-- Form Action -->
+{% block action %} action='{% url 'estoque-editar' %}' {% endblock action %}
 
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+<!-- Button Action -->
+{% block btn-action %}<i class='bx bxs-add-to-queue'></i> &nbsp;&nbsp; Salvar Mudanças{% endblock btn-action %}
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<!-- INPUTs -->
 
-</head>
-
-<div>
-    <div>
-        <!-- <h3>Faça seu cadastro aqui</h3> -->
-
-        <form method="POST" action="{% url 'estoque-editar' %}">
-            {% csrf_token %}
-
-            {% block value-id %}
-            {% endblock value-id %}
-            <div class="form-group">
-                <label for="nome_produto">Email address</label>
-                <input type="text" class="form-control" id="id" name="id{{ produto.pk }}" placeholder="Nome do Produto"
-                    value="{{ produto.id }}" readonly>
-            </div>
-
-            <div class="form-group">
-                <label for="nome_produto">Email address</label>
-                <input type="text" class="form-control" id="nome_produto" name="nome_produto"
-                    placeholder="Nome do Produto" value="{{ produto.nome_produto }}">
-            </div>
-            <div class="form-group">
-                <label for="quantidade_produto">Qntd</label>
-                <input type="text" class="form-control" id="quantidade_produto" placeholder="Quantidade"
-                    name="quantidade_produto" value="{{ produto.quantidade_produto }}">
-            </div>
-            <div class="form-group">
-                <label for="custo_venda">Custo/Valor</label>
-                <input type="text" class="form-control" id="custo_venda" placeholder="Custo/Venda" name="custo_venda"
-                    value="{{ produto.custo_venda }}">
-            </div>
-            <div class="form-group">
-                <label for="fornecedor">Fornecedor</label>
-                <input type="text" class="form-control" id="fornecedor" placeholder="ff" name="fornecedor"
-                    value="{{ produto.fornecedor }}">
-            </div>
-            <div class="form-group">
-                <label for="data_adicao">Data Adição</label>
-                <input type="text" class="form-control" id="data_adicao" placeholder="dd/mm/aaaa" name="data_adicao"
-                    value="{{ produto.data_adicao }}">
-            </div>
-            <div class="form-button">
-                <button type="submit" class="btn btn-primary"> Salvar Item</button>
-            </div>
-        </form>
-
-    </div>
+<!-- Edit Input Genérico -->
+{% block value-id %}
+<div class="form-group">
+    <label for="id">Código</label>
+    <input type="text" class="form-control" value="{{ produto.id }}" name="id" readonly>
 </div>
+{% endblock value-id %}
+
+<!-- Edit Input Nome Despesa  -->
+{% block Value-Nome %} value="{{ produto.nome_produto }}" {% endblock Value-Nome %}
+
+<!-- Edit Input Quantiade Despesa  -->
+{% block Value-Quantidade %} value="{{ produto.quantidade_produto }}" {% endblock Value-Quantidade %}
+
+<!-- Edit Input Data Despesa  -->
+{% block Value-Data %} value="{{ produto.data_adicao}}" id="d"{% endblock Value-Data %}
+

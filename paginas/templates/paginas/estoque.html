@@ -8,40 +8,32 @@
 
 {% block conteudo %}
 
-<div class="home_content">
+<div class="home_content" style="top: 30px">
     <div class="conteudo_pagina">
 
-        <!-- data-bs-toggle="modal" data-bs-target="#staticBackdrop" -->
-        <!-- Button trigger modal -->
-        <!-- Button trigger modal -->
-        <div class="col-8">
+        <div class="container">
 
-        </div>
-        <!-- Modal -->
-        <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Adicione o produto</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        {% include 'cadastro/add.html' %}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="table-responsive">
-            <table class="table table-striped" id="tabela_despesa">
-                <tr>
-                    <th>Código</th>
-                    <th>Produto</th>
-                    <th>Qntd.</th>
-                    <th>Data de Adição</th>
-                    <th> <a type="button" data-bs-toggle="modal" data-bs-target="#addModal">
-                            <box-icon name='list-plus'></box-icon>
-                        </a></th>
-                </tr>
+            <br><br><br>
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
+                Adicione Produtos
+            </button>
+
+            <br><br><br>
+
+
+            <table class="table table-bordered" id="tabela_despesa" style="text-align: center ;">
+                <thead class="table-success">
+                    <tr>
+                        <th>Código</th>
+                        <th>Produto</th>
+                        <th>Unidades</th>
+                        <th>Data de Atualização</th>
+                        <th>Editar</th>
+                        <th>Deletar</th>
+                    </tr>
+                </thead>
+
 
                 {% for produto in object_list %}
 
@@ -51,35 +43,54 @@
                     <td>{{ produto.nome_produto }}</td>
                     <td>{{ produto.quantidade_produto }}</td>
                     <td>{{ produto.data_adicao }}</td>
-                    <td><a type="button" data-bs-toggle="modal" data-bs-target="#editModal{{ produto.pk }}">
+                    <td><a type="button" data-bs-toggle="modal" data-bs-target="#editModal{{ produto.id }}">
                             <box-icon name='edit'></box-icon>
-                        </a><a type="button" href="estoque/deletar/{{ produto.id }}">
+                        </a></td>
+                    <td><a type="button" href="estoque/deletar/{{ produto.id }}">
                             <box-icon name='trash'></box-icon>
                         </a></td>
                 </tr>
-                <div class="modal fade" id="editModal{{ produto.pk }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                {% include 'cadastro/edit.html' %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% empty %}
-                <tr>
-                    <td colspan="3">Nenhum campo registrado</td>
-                </tr>
+
+                {% include 'cadastro/edit.html' %}
+
+
+                {% endfor %}
+
             </table>
 
+        </div>
 
-            {% endfor %}
+        <!-- Tags de para incluir Modal de add e del de Despesas -->
+
+        {% include 'cadastro/add.html' %}
 
 
-    {% endblock %}
+        {% for message in messages %}
+        {% if message.tags == 'success' %}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <script>
+            var m = "{{ message }}";
+            swal("Perfeito !", m, "success");
+
+
+        </script>
+
+        {% endif %}
+        {% endfor %}
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}
