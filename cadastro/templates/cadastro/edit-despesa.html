@@ -1,10 +1,10 @@
 {% extends 'cadastro/add-despesa.html' %}
 
 <!-- Modal ID -->
-{% block modal-id %} id='editModal{{ despesa.id }}' {% endblock modal-id %}
+{% block modal-id %} id='editModal{{ despesa.pk }}' {% endblock modal-id %}
 
 <!-- Modal Title -->
-{% block modal-title %} <i></i> &nbsp; &nbsp; Despesa Editada{% endblock modal-title %}
+{% block modal-title %} <i></i> &nbsp; &nbsp; Editar Despesa{% endblock modal-title %}
 
 <!-- Form Action -->
 {% block action %} action='/edit_despesa' {% endblock action %}
@@ -16,7 +16,7 @@
 
 <!-- Edit Input Genérico -->
 {% block Value-id %}
-<div class="input-group mb-3">
+<div class="input-group mb-3" style="display: none;">
     <span class="btn border-secondary bg-light side-label"><i class='bx bx-add-to-queue'></i></span>
     <input type="text" class="form-control" value="{{ despesa.id }}" name="id" readonly>
 </div>
@@ -37,10 +37,10 @@
 {% endblock option %}
 
 <!-- Edit Input Data Despesa  -->
-{% block Value-Data %} value="{{ despesa.data_atualizacao}}"{% endblock Value-Data %}
+{% block Value-Data %} value="{{ despesa.data_atualizacao }}"{% endblock Value-Data %}
 
 <!-- Edit Input Nota  -->
-{% block Nota %}{{ despesa.nota_despesa }}{% endblock Nota %}
+{% block Nota %} {{ despesa.nota_despesa }} {% endblock Nota %}
 
 
 

@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -20,7 +21,7 @@
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
     <!-- Datatables CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/date-1.1.2/r-2.3.0/datatables.min.css"/>
 
     <!-- Select2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -164,8 +165,9 @@
         </script>
 
     <!-- Datatables JS -->
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/date-1.1.2/r-2.3.0/datatables.min.js"></script>
 
 
     <!-- Select2 JS -->
@@ -175,8 +177,9 @@
 
     <!-- Configurações da tabela de despesas variáveis na página de gastos -->
     <script>
-        $("#tabela_despesa").DataTable({
+        $("#example").DataTable({
 
+            // Configuração geral das tabelas
             paging: true,
             pageLength: 10,
             lengthChange: true,
@@ -184,10 +187,87 @@
             searching: true,
             bInfo: true,
             bSort: true,
-            
+
+            // Configuração de exclusão de filtros em colunas
+            "columnDefs": [{
+                "targets": [6,7],
+                "orderable": false,
+
+            }],
+
+            // Botões PDF - Excel - Print - Cópia
+            dom: '.lBfrtip',
+            buttons: [
+                {
+                    //Botão Cópia
+                    extend: 'copy',
+                    text: "<i class='bx bx-copy'></i>",
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Copiar tabela',
+                    exportOptions: {
+                        columns: [ 1 , 2 , 3, 4 , 5]
+                    },
+                },
+
+                {
+                    //Botão Excel
+                    extend: 'excel',
+                    text: "<i class='bx bx-file'></i>",
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Excel',
+                    exportOptions: {
+                        columns: [ 1 , 2 , 3, 4 , 5]
+                    },
+                },
+
+                {
+                    //Botão Impressão
+                    extend: 'print',
+                    text: "<i class='bx bx-printer'></i>",
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Imprimir',
+                    exportOptions: {
+                        columns: [ 1 , 2 , 3, 4 , 5]
+                    },
+
+                    //Customização da Fonte para impressão
+                    customize: function (win){
+                        $(win.document.body).css('font-size', '10pt')
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit')
+                    }
+
+                },
+
+                {
+                    //Botão PDF
+                    extend: 'pdf',
+                    text: "<i class='bx bxs-file-pdf'></i>",
+                    className: 'btn btn-secondary',
+                    titleAttr: 'PDF',
+                    exportOptions: {
+                        columns: [ 1 , 2 , 3, 4 , 5]
+                    },
+
+                    //Configuração da tabela no PDF
+                    tableHearder: {
+                        alignment: 'center'
+                    },
+                    customize: function (doc){
+                        doc.styles.tableHeader.alignment = 'center'
+                        doc.styles.tableBodyOdd.alignment = 'center'
+                        doc.styles.tableBodyEven.alignment = 'center'
+                        doc.styles.tableHeader.fontSize = 7
+                        doc.defaultStyle.fontSize = 6 
+
+                        doc.content[1].table.widths = Array(doc.content[1].table.body[1].length + 1).join('*').split('')
+                    }
+                
+                },
+            ]
 
             
-
         })
 
     </script>

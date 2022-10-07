@@ -1,4 +1,6 @@
 
+from atexit import register
+from cgitb import html
 from dataclasses import fields
 import json
 from unittest import result
@@ -7,9 +9,6 @@ from django.shortcuts import render
 from .models import ListaDespesas, ListaProdutos
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.contrib import messages
-
-
-
 
 
 """ Configurações do CRUD da parte de Despesa FIXA e VARIÁVEL """
@@ -70,6 +69,7 @@ def edit_despesa(request):
             despesa.save()
             messages.success(request, "Despesa atualizada com sucesso!")
             return HttpResponseRedirect("/gastos")
+            
             
 
 #----------# Função DELETE Despesa #----------#
@@ -168,3 +168,6 @@ def checkProduto2(request):
     return JsonResponse({'PRODUTOS': serialized_data})
 
     # return HttpResponse(serialized_data)
+
+
+

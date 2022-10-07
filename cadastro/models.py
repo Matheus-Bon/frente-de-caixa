@@ -33,4 +33,3 @@ class ListaDespesas(models.Model):
 
     def __str__(self):
         return "{} {} {} {} {}".format(self.nome_despesa, self.quantidade_despesa, self.custo, self.tipo_gasto, self.data_atualizacao, self.nota_despesa)
-

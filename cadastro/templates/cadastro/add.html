@@ -38,8 +38,8 @@
                 </div> -->
                 <div class="form-group">
                     <label for="data_adicao">Data Adição</label>
-                    <input type="text" class="form-control" id="data" placeholder="dd-mm-aaaa hh-mm"
-                        name="data_adicao" {% block Value-Data %} {% endblock Value-Data %}>
+                    <input type="text" class="form-control" placeholder="dd-mm-aaaa hh-mm"
+                        name="data_adicao" {% block Value-Data %} id='data'{% endblock Value-Data %}>
                 </div>
                 <div class="form-button">
                     <button type="submit" class="btn btn-primary">{% block btn-action %} Salvar Item {% endblock btn-action %}</button>

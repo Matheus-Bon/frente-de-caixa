@@ -530,3 +530,48 @@
 .swal-icon--success:after {
     background: none !important;
 }
+
+
+
+
+/*----------------------------------------*/
+/*  6.  DataTables
+/*----------------------------------------*/
+
+.page-item.sidebar.active .page-link {
+    columns: #fff;
+    background-color: #6c757d;
+    border: 1px solid #6c757d;
+
+}
+
+.pagination > li > a {
+    background-color: #fff;
+    color: #6c757d;
+}
+
+.pagination > li > a:focus, 
+.pagination > li > a:hover,
+.pagination > span > a:focus,
+.pagination > span > a:hover {
+    color: #111;
+    background-color: #d3d3d3;
+    border: 1px solid #6c757d;
+    box-shadow: none;
+
+}
+
+/* Paginação */
+.dataTables_paginate {
+    margin-top: 10px !important;
+}
+
+/* Input Pesquisa */
+.dataTables_filter {
+    margin-bottom: 10px !important;
+}
+
+/* Botões de exportação */
+.dt-buttons {
+    margin-bottom: -50px !important;
+}
