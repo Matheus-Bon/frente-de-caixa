@@ -4,10 +4,10 @@
 {% block modal-id %} id='editModal{{ produto.id }}' {% endblock modal-id %}
 
 <!-- Modal Title -->
-{% block modal-title %} <i></i> &nbsp; &nbsp; Despesa Editada{% endblock modal-title %}
+{% block modal-title %} <i></i> &nbsp; &nbsp; Produto Editado{% endblock modal-title %}
 
 <!-- Form Action -->
-{% block action %} action='{% url 'estoque-editar' %}' {% endblock action %}
+{% block action %} action='/edit_produto' {% endblock action %}
 
 <!-- Button Action -->
 {% block btn-action %}<i class='bx bxs-add-to-queue'></i> &nbsp;&nbsp; Salvar Mudanças{% endblock btn-action %}

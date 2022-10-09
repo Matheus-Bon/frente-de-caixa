@@ -5,49 +5,81 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addModalLabel">
-                    {% block modal-title %} <i></i> &nbsp; &nbsp; Despesa Adicionada{% endblock modal-title %}
+                    {% block modal-title %} <i></i> &nbsp; &nbsp; Adicionar Produto{% endblock modal-title %}
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" {% block action %} action="{% url 'estoque-adicionar' %}" {% endblock action %}>
+            <form method="POST" {% block action %} action='/add_produto' {% endblock action %} autocomplete="off">
                 {% csrf_token %}
                 <div class="modal-body">
-                {% block value-id %}
-                {% endblock value-id %}
-                
-            
-                <div class="form-group">
-                    <label for="nome_produto">Nome do Produto</label>
-                    <input type="text" class="form-control" id="nome_produto" name="nome_produto" placeholder="Ex. Coxinha"
-                        value="{{ produto.nome_produto }}" {% block Value-Nome %}{% endblock Value-Nome %}>
-                </div>
-                <div class="form-group">
-                    <label for="quantidade_produto">Quantidade</label>
-                    <input type="text" class="form-control" id="quantidade_produto" placeholder="Unidades de Salgadinho"
-                        name="quantidade_produto" value="{{ produto.quantidade_produto }}" {% block Value-Quantidade %} {% endblock Value-Quantidade %}>
-                </div>
-                <!-- <div class="form-group">
-                    <label for="custo_venda">Custo/Valor</label>
-                    <input type="text" class="form-control" id="custo_venda" placeholder="Custo/Venda" name="custo_venda"
-                        value="{{ produto.custo_venda }}">
-                </div> -->
-                <!-- <div class="form-group">
-                    <label for="fornecedor">Fornecedor</label>
-                    <input type="text" class="form-control" id="fornecedor" placeholder="Ex: Fábrica Lanche Feliz"
-                        name="fornecedor" value="{{ produto.fornecedor }}">
-                </div> -->
-                <div class="form-group">
-                    <label for="data_adicao">Data Adição</label>
-                    <input type="text" class="form-control" placeholder="dd-mm-aaaa hh-mm"
-                        name="data_adicao" {% block Value-Data %} id='data'{% endblock Value-Data %}>
-                </div>
-                <div class="form-button">
-                    <button type="submit" class="btn btn-primary">{% block btn-action %} Salvar Item {% endblock btn-action %}</button>
+
+                    {% block Value-id %}{% endblock Value-id %}
+
+                    <!-------------------- Input Nome Produto --------------------->
+                    <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-light side-label"><i class='bx bx-add-to-queue'></i></span>
+                        <input type="text" class="form-control" name="nome_despesa" maxlength="40"
+                            placeholder="Nome da Despesa" required {% block Value-Nome_produto %}{% endblock Value-Nome_produto %}>
+                    </div>
+
+
+                     <!-------------------- Input Quantidade Produto --------------------->
+                    <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-light side-label"><i class='bx bxs-package'></i></span>
+                        <input type="text" class="form-control" name="quantidade_despesa" maxlength="40"
+                            placeholder="Quantidade da Despesa" required {% block Value-Quantidade_produto %} {% endblock Value-Quantidade_produto %}>
+                    </div>
+
+
+                    <!-------------------- Input Data Produto --------------------->
+                    <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-light side-label"><i class='bx bxs-dollar-circle'></i></span>
+                        <input type="text" class="form-control" name="custo" maxlength="40"
+                            placeholder="Custo da Despesa" required {% block Data-Produto %}{% endblock Data-Produto  %}>
+                    </div>
+
+
+                    <!-------------------- Input Nota Produto --------------------->
+                    <div class="form-group">
+                        <textarea class="form-control" name="nota_produto" rows="10" maxlength="1000"
+                            placeholder="Observação opcional" {% block Nota_produto %}{% endblock Nota_produto %}></textarea>
+                    </div>
+
+                    <div class="mt-4" style="width: 100%;">
+
+                        <button type="submit" class="btn btn-secondary mb-3">
+                            {% block btn-action %}<i class='bx bxs-add-to-queue'></i> &nbsp;&nbsp; Adicionar
+                            Produto{% endblock btn-action %}
+                        </button>
+
+                        <button type="reset" class="btn btn-outline-dark mb-3 ms-2" style="width: 50px;"
+                            title="Resetar">
+                            <i class='bx bx-reset'></i>
+                        </button>
+
+                        <a href="{% url 'estoque' %}" type="button" class="btn btn-outline-dark mb-3 ms-2"
+                            style="width: 50px;" title="Fechar">
+                            <i class='bx bx-window-close'></i>
+                        </a>
+                    </div>
+
+
+
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"
     integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous">

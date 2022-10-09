@@ -61,7 +61,7 @@
 
                 {% include 'cadastro/edit-despesa.html' %}
 
-                <!-- Modal para deletar despesas -->
+                <!-- Modal para deletar despesa -->
 
                 <div class="modal fade" id="deleteModal{{ despesa.id }}" tabindex="-1" aria-labelledby="deleteModalLabel"
                     aria-hidden="true">
@@ -97,29 +97,7 @@
 
         </div>
 
-
-        <script>
-            $("#example").DataTable({
-    
-                paging: true,
-                pageLength: 10,
-                lengthChange: true,
-                autoWidth: true,
-                searching: true,
-                bInfo: true,
-                bSort: true,
-    
-                "columnDefs": [{
-                    "targets": [6,7],
-                    "orderable": false,
-    
-                }]
-                
-            })
-    
-        </script>
-
-
+        <script src="{% static 'js/script-tabela.js' %}"></script>
 
         <!-- Tags de para incluir Modal de add e del de Despesas -->
 

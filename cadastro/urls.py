@@ -7,11 +7,22 @@ from .views import checkProduto
 urlpatterns = [
 
     # URLs da parte do CRUD em Estoque
-    path('estoque',views.estoqueList, name='estoque'),
-    path('estoque/adicionar', views.addProduct, name='estoque-adicionar'),
-    path('estoque/editar/', views.editProduct, name='estoque-editar'),
-    path('estoque/produto/<int:product_id>', views.viewProduct, name='produto-unico'),
-    path('estoque/deletar/<int:product_id>', views.delProduct, name='estoque-deletar'),
+    #path('estoque',views.estoqueList, name='estoque'),
+    #path('estoque/adicionar', views.addProduct, name='estoque-adicionar'),
+    #path('estoque/editar/', views.editProduct, name='estoque-editar'),
+    #path('estoque/produto/<int:product_id>', views.viewProduct, name='produto-unico'),
+    #path('estoque/deletar/<int:product_id>', views.delProduct, name='estoque-deletar'),
+
+
+    # URLs da parte do CRUD em Produtos
+    path('estoque', views.produto_List, name='estoque'),
+    path('add_produto', views.add_produto, name="add_produto"),
+    path('produto/<str:produto_id>', views.produto, name='produto'),
+    path('edit_produto', views.edit_produto, name='edit_despesa'),
+    path('delete_produto/<str:produto_id>', views.delete_produto, name='delete_produto'),
+
+
+
 
 
     # URLs da parte do CRUD em Despesas

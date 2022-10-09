@@ -86,50 +86,67 @@ def delete_despesa(request, despesa_id):
 
 
 
+""" Configurações do CRUD da parte de Produtos """
 
 
+def produto_List(request):
+    produto_List = ListaProdutos.objects.all()
+    return render(request, "paginas/estoque.html", {'produtos': produto_List})
 
-def estoqueList(request):
-    qs = ListaProdutos.objects.all()
-    return render(request, "paginas/estoque.html", {'object_list': qs})
+
+#----------# Função ADD Produto #----------#
 
 
-def addProduct(request):
-    if request.method == "POST":
-        product = ListaProdutos()
-        product.nome_produto = request.POST.get('nome_produto')
-        product.quantidade_produto = request.POST.get('quantidade_produto')
-        product.custo_venda = request.POST.get('custo_venda')
-        product.fornecedor = request.POST.get('fornecedor')
-        product.data_adicao = request.POST.get('data_adicao')
-        product.save()
-        return HttpResponseRedirect('/estoque')
+def add_produto(request):
+    if request.method =="POST":
+        if request.POST.get('nome_produto') \
+            and request.POST.get('quantidade_produto') \
+            and request.POST.get('data_adicao') \
+            or request.POST.get('nota_produto'):
+            
+            produto = ListaProdutos()
+            produto.nome_produto = request.POST.get('nome_produto')
+            produto.quantidade_produto = request.POST.get('quantidade_produto')
+            produto.data_adicao = request.POST.get('data_adicao')
+            produto.nota_produto = request.POST.get('nota_produto')
+            produto.save()
+            messages.success(request, "Produto adicionado com sucesso!")
+            return HttpResponseRedirect('/estoque')
     else:
-        return render(request, 'cadastro\\add.html')
+            return render(request, 'cadastro\\add.html')
 
 
-def viewProduct(request, product_id):
-    product = ListaProdutos.objects.get(id=product_id)
-    if product != None:
-        return render(request, 'cadastro\\edit.html', {'produto': product})
+#----------# Função VIEW Produto #----------#
 
 
-def editProduct(request):
+def produto(request, product_id):
+    produtos = ListaProdutos.objects.get(id=product_id)
+    if produtos != None:
+        return render(request, 'cadastro\\edit.html', {'produto': produtos})
+
+
+#----------# Função EDIT Produto #----------#
+
+
+def edit_produto(request):
     if request.method == "POST":
-        product = ListaProdutos.objects.get(id=request.POST.get('id'))
-        if product != None:
-            product.nome_produto = request.POST.get('nome_produto')
-            product.quantidade_produto = request.POST.get('quantidade_produto')
-            product.custo_venda = request.POST.get('custo_venda')
-            product.fornecedor = request.POST.get('fornecedor')
-            product.data_adicao = request.POST.get('data_adicao')
-            product.save()
+        produto = ListaProdutos.objects.get(id=request.POST.get('id'))
+        if produto != None:
+            produto.nome_produto = request.POST.get('nome_produto')
+            produto.quantidade_produto = request.POST.get('quantidade_produto')
+            produto.data_adicao = request.POST.get('data_adicao')
+            produto.nota_produto = request.POST.get('nota_produto')
+            produto.save()
+            messages.success(request, "Produto atualizado com sucesso!")
             return HttpResponseRedirect('/estoque')
 
 
-def delProduct(request, product_id):
-    product = ListaProdutos.objects.get(id=product_id)
-    product.delete()
+#----------# Função DELETE Produto #----------#
+
+def delete_produto(request, produto_id):
+    produto = ListaProdutos.objects.get(id = produto_id)
+    produto.delete()
+    messages.success(request, "Produto deletado com sucesso!")
     return HttpResponseRedirect('/estoque')
 
 
@@ -161,13 +178,22 @@ def checkProduto(request):
         return HttpResponseBadRequest('Invalid request')
 
 
-def checkProduto2(request):
-    result = ListaProdutos.objects.all()
-    serialized_data = json.dumps(list(result), default=str)
-
-    return JsonResponse({'PRODUTOS': serialized_data})
-
-    # return HttpResponse(serialized_data)
 
 
 
+
+
+
+
+""" def addProduct(request):
+    if request.method == "POST":
+        product = ListaProdutos()
+        product.nome_produto = request.POST.get('nome_produto')
+        product.quantidade_produto = request.POST.get('quantidade_produto')
+        product.custo_venda = request.POST.get('custo_venda')
+        product.fornecedor = request.POST.get('fornecedor')
+        product.data_adicao = request.POST.get('data_adicao')
+        product.save()
+        return HttpResponseRedirect('/estoque')
+    else:
+        return render(request, 'cadastro\\add.html') """

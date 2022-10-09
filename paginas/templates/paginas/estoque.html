@@ -22,7 +22,7 @@
             <br><br><br>
 
 
-            <table class="table table-bordered" id="example" style="text-align: center ;">
+            <table class="table table-bordered" id="tabela" style="text-align: center ;">
                 <thead class="table-success">
                     <tr>
                         <th>Código</th>
@@ -35,23 +35,58 @@
                 </thead>
 
 
-                {% for produto in object_list %}
+                {% for produto in produtos %}
 
 
                 <tr>
-                    <td>{{ produto.pk }}</td>
+                    <td>{{ produto.id }}</td>
                     <td>{{ produto.nome_produto }}</td>
                     <td>{{ produto.quantidade_produto }}</td>
-                    <td>{{ produto.data_adicao }}</td>
-                    <td><a type="button" data-bs-toggle="modal" data-bs-target="#editModal{{ produto.id }}">
+                    <td>{{ produto.data_adicao | date:'d/m/Y (H:i)' }}</td>
+
+                    <td>
+                        <a class="btn btn-sucess text-center" title="Editar Produto" data-bs-toggle="modal"
+                            data-bs-target="#editModal{{ produto.id }}">
                             <box-icon name='edit'></box-icon>
-                        </a></td>
-                    <td><a type="button" href="estoque/deletar/{{ produto.id }}">
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn text-center" title="Deletar Produto" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal{{ produto.id }}">
                             <box-icon name='trash'></box-icon>
-                        </a></td>
+                        </a>
+                    </td>
                 </tr>
 
                 {% include 'cadastro/edit.html' %}
+
+                <!-- Modal para deletar produto -->
+
+                <div class="modal fade" id="deleteModal{{ produto.id }}" tabindex="-1"
+                    aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="deleteModalLabel"><i></i>Deletar Produto</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="tex-center text-danger"></div>
+                                <div class="tex-center text-danger">
+                                    <span>Você deseja <strong>deletar</strong> essa despesa?</span>
+                                    <div class="text-dark mt-3 mb-2">Despesa: <strong>{{ produto.nome_produto }}</strong></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary btn-sm"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                                <a href="/delete_produto/{{ produto.id }}"
+                                    class="btn btn-outline-danger btn-sm">Deletar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
                 {% endfor %}
@@ -59,6 +94,8 @@
             </table>
 
         </div>
+
+        
 
         <!-- Tags de para incluir Modal de add e del de Despesas -->
 
@@ -90,7 +127,7 @@
     </div>
 </div>
 
-
+<script src="{% static 'js/script-tabela-2.js' %}"></script>
 
 
 {% endblock %}
