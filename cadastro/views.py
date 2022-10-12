@@ -113,14 +113,14 @@ def add_produto(request):
             messages.success(request, "Produto adicionado com sucesso!")
             return HttpResponseRedirect('/estoque')
     else:
-            return render(request, 'cadastro\\add.html')
+            return render(request , 'cadastro\\add.html')
 
 
 #----------# Função VIEW Produto #----------#
 
 
-def produto(request, product_id):
-    produtos = ListaProdutos.objects.get(id=product_id)
+def produto(request, produto_id):
+    produtos = ListaProdutos.objects.get(id=produto_id)
     if produtos != None:
         return render(request, 'cadastro\\edit.html', {'produto': produtos})
 
@@ -166,7 +166,7 @@ def is_ajax(request):
     return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 
 
-def checkProduto(request):
+""" def checkProduto(request):
     if is_ajax:
         if request.method == 'GET':
             produtos = list(ListaProdutos.objects.all().values())
@@ -176,24 +176,8 @@ def checkProduto(request):
 
     else:
         return HttpResponseBadRequest('Invalid request')
+ """
 
 
 
 
-
-
-
-
-
-""" def addProduct(request):
-    if request.method == "POST":
-        product = ListaProdutos()
-        product.nome_produto = request.POST.get('nome_produto')
-        product.quantidade_produto = request.POST.get('quantidade_produto')
-        product.custo_venda = request.POST.get('custo_venda')
-        product.fornecedor = request.POST.get('fornecedor')
-        product.data_adicao = request.POST.get('data_adicao')
-        product.save()
-        return HttpResponseRedirect('/estoque')
-    else:
-        return render(request, 'cadastro\\add.html') """

@@ -24,7 +24,7 @@
             <table class="table table-bordered" id="example" style="text-align: center ;">
                 <thead class="table-success">
                     <tr>
-                        <th style="display: none;">ID</th>
+                        
                         <th>Despesa</th>
                         <th>Quantidade</th>
                         <th>Custo</th>
@@ -38,7 +38,7 @@
 
                 {% for despesa in despesas %}
                 <tr>
-                    <td style="display: none;">{{ despesa.id }}</td>
+                    
                     <td>{{ despesa.nome_despesa }}</td>
                     <td>{{ despesa.quantidade_despesa }}</td>
                     <td>{{ despesa.custo }}</td>
@@ -99,7 +99,7 @@
 
         <script src="{% static 'js/script-tabela.js' %}"></script>
 
-        <!-- Tags de para incluir Modal de add e del de Despesas -->
+        <!-- Tags de para incluir Modal de add Despesas -->
 
         {% include 'cadastro/add-despesa.html' %}
 

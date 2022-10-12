@@ -12,7 +12,7 @@ $(document).ready( function(){
 
         // Configuração de exclusão de filtros em colunas
         "columnDefs": [{
-            "targets": [6,7],
+            "targets": [5 , 6],
             "orderable": false,
 
         }],
@@ -27,7 +27,7 @@ $(document).ready( function(){
                 className: 'btn btn-secondary',
                 titleAttr: 'Copiar tabela',
                 exportOptions: {
-                    columns: [ 1 , 2 , 3, 4 , 5]
+                    columns: [ 0 , 1 , 2 , 3 , 4]
                 },
             },
 
@@ -38,7 +38,7 @@ $(document).ready( function(){
                 className: 'btn btn-secondary',
                 titleAttr: 'Excel',
                 exportOptions: {
-                    columns: [ 1 , 2 , 3, 4 , 5]
+                    columns: [ 0 , 1 , 2 , 3 , 4]
                 },
             },
 
@@ -49,7 +49,7 @@ $(document).ready( function(){
                 className: 'btn btn-secondary',
                 titleAttr: 'Imprimir',
                 exportOptions: {
-                    columns: [ 1 , 2 , 3, 4 , 5]
+                    columns: [ 0 , 1 , 2 , 3 , 4]
                 },
 
                 //Customização da Fonte para impressão
@@ -69,7 +69,7 @@ $(document).ready( function(){
                 className: 'btn btn-secondary',
                 titleAttr: 'PDF',
                 exportOptions: {
-                    columns: [ 1 , 2 , 3, 4 , 5]
+                    columns: [ 0 , 1 , 2 , 3 , 4]
                 },
 
                 //Configuração da tabela no PDF

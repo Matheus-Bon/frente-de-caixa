@@ -9,7 +9,7 @@
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" {% block action %} action='/add_produto' {% endblock action %} autocomplete="off">
+            <form method="POST" {% block action-2 %} action='/add_produto' {% endblock action-2 %} autocomplete="off">
                 {% csrf_token %}
                 <div class="modal-body">
 
@@ -18,32 +18,32 @@
                     <!-------------------- Input Nome Produto --------------------->
                     <div class="input-group mb-3">
                         <span class="btn border-secondary bg-light side-label"><i class='bx bx-add-to-queue'></i></span>
-                        <input type="text" class="form-control" name="nome_despesa" maxlength="40"
-                            placeholder="Nome da Despesa" required {% block Value-Nome_produto %}{% endblock Value-Nome_produto %}>
+                        <input type="text" class="form-control" name="nome_produto" maxlength="40"
+                            placeholder="Nome do Produto" required {% block Value-Nome_produto %}{% endblock Value-Nome_produto %}>
                     </div>
 
 
                      <!-------------------- Input Quantidade Produto --------------------->
                     <div class="input-group mb-3">
                         <span class="btn border-secondary bg-light side-label"><i class='bx bxs-package'></i></span>
-                        <input type="text" class="form-control" name="quantidade_despesa" maxlength="40"
-                            placeholder="Quantidade da Despesa" required {% block Value-Quantidade_produto %} {% endblock Value-Quantidade_produto %}>
+                        <input type="text" class="form-control" name="quantidade_produto" maxlength="40"
+                            placeholder="Quantidade do Produto (Em unidades)" required {% block Value-Quantidade_produto %} {% endblock Value-Quantidade_produto %}>
                     </div>
 
 
                     <!-------------------- Input Data Produto --------------------->
-                    <div class="input-group mb-3">
-                        <span class="btn border-secondary bg-light side-label"><i class='bx bxs-dollar-circle'></i></span>
-                        <input type="text" class="form-control" name="custo" maxlength="40"
-                            placeholder="Custo da Despesa" required {% block Data-Produto %}{% endblock Data-Produto  %}>
-                    </div>
+<!--                      <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-light side-label"><i class='bx bxs-calendar'></i></span>
+                        <input type="text" class="form-control" name="data" maxlength="40"
+                            placeholder="Data de Adição" required {% block Data-Produto %}{% endblock Data-Produto  %}>
+                    </div>  -->
 
 
                     <!-------------------- Input Nota Produto --------------------->
-                    <div class="form-group">
+                     <div class="form-group">
                         <textarea class="form-control" name="nota_produto" rows="10" maxlength="1000"
                             placeholder="Observação opcional" {% block Nota_produto %}{% endblock Nota_produto %}></textarea>
-                    </div>
+                    </div> 
 
                     <div class="mt-4" style="width: 100%;">
 

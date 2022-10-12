@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import checkProduto
+#from .views import checkProduto
 
 
 # routes 
@@ -17,8 +17,8 @@ urlpatterns = [
     # URLs da parte do CRUD em Produtos
     path('estoque', views.produto_List, name='estoque'),
     path('add_produto', views.add_produto, name="add_produto"),
-    path('produto/<str:produto_id>', views.produto, name='produto'),
-    path('edit_produto', views.edit_produto, name='edit_despesa'),
+    path('produto/<str:produto_id>', views.produto, name='produtoview'),
+    path('edit_produto', views.edit_produto, name='edit_produto'),
     path('delete_produto/<str:produto_id>', views.delete_produto, name='delete_produto'),
 
 
@@ -35,5 +35,5 @@ urlpatterns = [
 
     # checkProduto
 
-    path('get/ajax/validate/produto', checkProduto, name='validate_produto' )
+    #path('get/ajax/validate/produto', checkProduto, name='validate_produto' )
 ]

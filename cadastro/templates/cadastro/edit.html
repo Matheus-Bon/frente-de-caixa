@@ -4,7 +4,7 @@
 {% block modal-id %} id='editModal{{ produto.id }}' {% endblock modal-id %}
 
 <!-- Modal Title -->
-{% block modal-title %} <i></i> &nbsp; &nbsp; Produto Editado{% endblock modal-title %}
+{% block modal-title %} <i></i> &nbsp; &nbsp; Editar Produto{% endblock modal-title %}
 
 <!-- Form Action -->
 {% block action %} action='/edit_produto' {% endblock action %}
@@ -15,19 +15,21 @@
 <!-- INPUTs -->
 
 <!-- Edit Input Genérico -->
-{% block value-id %}
-<div class="form-group">
-    <label for="id">Código</label>
+{% block Value-id %}
+<div class="input-group mb-3" style="display: none;">
+    <span class="btn border-secondary bg-light side-label"><i class='bx bx-add-to-queue'></i></span>
     <input type="text" class="form-control" value="{{ produto.id }}" name="id" readonly>
 </div>
-{% endblock value-id %}
+{% endblock Value-id %}
 
-<!-- Edit Input Nome Despesa  -->
-{% block Value-Nome %} value="{{ produto.nome_produto }}" {% endblock Value-Nome %}
+<!-- Edit Input Nome Produto  -->
+{% block Value-Nome_produto %} value="{{ produto.nome_produto }}" {% endblock Value-Nome_produto %}
 
-<!-- Edit Input Quantiade Despesa  -->
-{% block Value-Quantidade %} value="{{ produto.quantidade_produto }}" {% endblock Value-Quantidade %}
+<!-- Edit Input Quantiade Produto  -->
+{% block Value-Quantidade_produto %} value="{{ produto.quantidade_produto }}" {% endblock Value-Quantidade_produto %}
 
-<!-- Edit Input Data Despesa  -->
-{% block Value-Data %} value="{{ produto.data_adicao}}" id="d"{% endblock Value-Data %}
+<!-- Edit Input Data Produto  -->
+{% block Data-Produto %} value="{{ produto.data_adicao}}" id="d"{% endblock Data-Produto %}
 
+<!-- Edit Input Nota Produto  -->
+{% block Nota_produto %} {{ produto.nota_produto }} {% endblock Nota_produto %}
