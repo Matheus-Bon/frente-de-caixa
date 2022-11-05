@@ -1,69 +1,53 @@
 <!-- Modal -->
-<div class="modal fade" {% block modal-id %} id='addModal' {% endblock modal-id %} tabindex="-1"
-    aria-labelledby="addModalLabel" aria-hidden="true">
+<div class="modal fade" {% block modal-id %} id="addModal" {% endblock modal-id %} tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addModalLabel">
-                    {% block modal-title %} <i></i> &nbsp; &nbsp; Adicionar Produto{% endblock modal-title %}
+                <h5 class="modal-title fs-5" id="addModalLabel">
+                    {% block modal-title %} <i class='bx bx-package'></i>&nbsp;&nbsp;  Adicionar Produto {% endblock modal-title %}
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" {% block action-2 %} action='/add_produto' {% endblock action-2 %} autocomplete="off">
-                {% csrf_token %}
-                <div class="modal-body">
+            <form method="POST" {% block action %} action="/add_produto" {% endblock action %} autocomplete="off">
 
+                {% csrf_token %}
+
+                <div class="modal-body">
+                    
+                    <!------------------ ID ------------------>
                     {% block Value-id %}{% endblock Value-id %}
 
-                    <!-------------------- Input Nome Produto --------------------->
+
                     <div class="input-group mb-3">
-                        <span class="btn border-secondary bg-light side-label"><i class='bx bx-add-to-queue'></i></span>
-                        <input type="text" class="form-control" name="nome_produto" maxlength="40"
-                            placeholder="Nome do Produto" required {% block Value-Nome_produto %}{% endblock Value-Nome_produto %}>
+                        <span class="btn border-secondary bg-ligth side-label"><i class='bx bx-barcode'></i></span>
+                        <input type="text" class="form-control" name="nome_produto" maxlength="40" placeholder="Nome do Produto" required {% block Value-nome %}{% endblock Value-nome %}>
                     </div>
 
 
-                     <!-------------------- Input Quantidade Produto --------------------->
                     <div class="input-group mb-3">
-                        <span class="btn border-secondary bg-light side-label"><i class='bx bxs-package'></i></span>
-                        <input type="text" class="form-control" name="quantidade_produto" maxlength="40"
-                            placeholder="Quantidade do Produto (Em unidades)" required {% block Value-Quantidade_produto %} {% endblock Value-Quantidade_produto %}>
+                        <span class="btn border-secondary bg-ligth side-label"><i class='bx bxs-bar-chart-alt-2'></i></span>
+                        <input type="text" class="form-control" name="quantidade_produto" maxlength="40" placeholder="Quantidade do Produto" required {% block Value-quantidade %}{% endblock Value-quantidade %}>
                     </div>
+                    
 
-
-                    <!-------------------- Input Data Produto --------------------->
-<!--                      <div class="input-group mb-3">
-                        <span class="btn border-secondary bg-light side-label"><i class='bx bxs-calendar'></i></span>
-                        <input type="text" class="form-control" name="data" maxlength="40"
-                            placeholder="Data de Adição" required {% block Data-Produto %}{% endblock Data-Produto  %}>
-                    </div>  -->
-
-
-                    <!-------------------- Input Nota Produto --------------------->
-                     <div class="form-group">
-                        <textarea class="form-control" name="nota_produto" rows="10" maxlength="1000"
-                            placeholder="Observação opcional" {% block Nota_produto %}{% endblock Nota_produto %}></textarea>
-                    </div> 
+                    <div class="form-group" >
+                        <textarea class="form-control" name="note" rows="7" maxlength="1000" placeholder="Descrição é opcional...">{% block nota %}{% endblock nota %}</textarea >
+                    </div>
 
                     <div class="mt-4" style="width: 100%;">
-
                         <button type="submit" class="btn btn-secondary mb-3">
-                            {% block btn-action %}<i class='bx bxs-add-to-queue'></i> &nbsp;&nbsp; Adicionar
-                            Produto{% endblock btn-action %}
+                            {% block btn-action %}<i class='bx bxs-add-to-queue'></i>&nbsp;&nbsp; Adicionar Produto{% endblock btn-action %}
                         </button>
 
-                        <button type="reset" class="btn btn-outline-dark mb-3 ms-2" style="width: 50px;"
-                            title="Resetar">
-                            <i class='bx bx-reset'></i>
+                        <button type="reset" class="btn btn-outline-dark mb-3 ms-2" style="width: 50px;" title="Resetar" >
+                            <i class='bx bx-reset' ></i>
                         </button>
 
-                        <a href="{% url 'estoque' %}" type="button" class="btn btn-outline-dark mb-3 ms-2"
-                            style="width: 50px;" title="Fechar">
-                            <i class='bx bx-window-close'></i>
+                        <a href="{% url 'estoque' %}" class="btn btn-outline-dark mb-3 ms-2" style="width: 50px;" title="Fechar" >
+                            <i class='bx bx-window-close' ></i>
                         </a>
+
                     </div>
-
-
 
                 </div>
             </form>
@@ -81,7 +65,16 @@
 
 
 
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+
+
+
+
+
+
+
+
+
+<!-- <script src="https://code.jquery.com/jquery-3.6.1.min.js"
     integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous">
     </script>
 
@@ -110,4 +103,4 @@
 
 
     document.getElementById('data').value = dformat
-</script>
+</script> -->

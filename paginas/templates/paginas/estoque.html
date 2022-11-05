@@ -22,15 +22,15 @@
             <br><br><br>
 
 
-            <table class="table table-bordered" id="tabela" style="text-align: center ;">
+            <table class="table table-bordered" id="table" style="text-align: center ;">
                 <thead class="table-success">
                     <tr>
-                        <th>Código</th>
-                        <th>Produto</th>
-                        <th>Unidades</th>
-                        <th>Data de Atualização</th>
-                        <th>Editar</th>
-                        <th>Deletar</th>
+                        <th style="width: 7%;">Código</th>
+                        <th style="width: 20%;">Produto</th>
+                        <th style="width: 10%;">Unidades</th>
+                        <th style="width: 15%;">Data de Adição</th>
+                        <th style="width: 5%;">Editar</th>
+                        <th style="width: 5%;">Deletar</th>
                     </tr>
                 </thead>
 
@@ -42,17 +42,17 @@
                     <td>{{ produto.id }}</td>
                     <td>{{ produto.nome_produto }}</td>
                     <td>{{ produto.quantidade_produto }}</td>
-                    <td>{{ produto.data_adicao | date:'d/m/Y (H:i)' }}</td>
+                    <td>{{ produto.data_adicao_prod | date:'d/m/Y (H:i)' }}</td>
 
                     <td>
                         <a class="btn btn-sucess text-center" title="Editar Produto" data-bs-toggle="modal"
-                            data-bs-target="#editModal{{ produto.id }}">
+                            data-bs-target="#editModal{{ produto.pk }}">
                             <box-icon name='edit'></box-icon>
                         </a>
                     </td>
                     <td>
                         <a class="btn text-center" title="Deletar Produto" data-bs-toggle="modal"
-                            data-bs-target="#deleteModal{{ produto.id }}">
+                            data-bs-target="#deleteModal{{ produto.pk }}">
                             <box-icon name='trash'></box-icon>
                         </a>
                     </td>
@@ -60,21 +60,22 @@
 
                 {% include 'cadastro/edit.html' %}
 
+
                 <!-- Modal para deletar produto -->
 
-                <div class="modal fade" id="deleteModal{{ produto.id }}" tabindex="-1"
+                <div class="modal fade" id="deleteModal{{ produto.pk }}" tabindex="-1"
                     aria-labelledby="deleteModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="deleteModalLabel"><i></i>Deletar Produto</h1>
+                                <h1 class="modal-title fs-5" id="deleteModalLabel"><i class='bx bxs-folder-minus'></i>&nbsp;&nbsp; Deletar Produto</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="tex-center text-danger"></div>
                                 <div class="tex-center text-danger">
-                                    <span>Você deseja <strong>deletar</strong> essa despesa?</span>
+                                    <span>Você deseja deletar esse produto?</span>
                                     <div class="text-dark mt-3 mb-2">Despesa: <strong>{{ produto.nome_produto }}</strong></div>
                                 </div>
                             </div>
@@ -95,30 +96,24 @@
 
         </div>
 
-        
+        <script src="js/script-tabela-2.js" ></script>
 
-        <!-- Tags de para incluir Modal de add Produtos -->
+        <!-- Tags para incluir Modal de add Produtos -->
 
         {% include 'cadastro/add.html' %}
 
 
         {% for message in messages %}
-        {% if message.tags == 'success' %}
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            {% if message.tags == 'success' %}
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-        <script>
-            var m = "{{ message }}";
-            swal("Perfeito !", m, "success");
+                <script>
+                    var m = "{{ message }}";
+                    swal("Perfeito!", m, "success");
+                </script>
 
-
-        </script>
-
-        {% endif %}
+            {% endif %}
         {% endfor %}
-
-
-
-
 
 
 
@@ -127,7 +122,7 @@
     </div>
 </div>
 
-<script src="{% static 'js/script-tabela-2.js' %}"></script>
+
 
 
 {% endblock %}

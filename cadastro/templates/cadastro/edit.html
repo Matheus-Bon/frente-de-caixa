@@ -1,35 +1,35 @@
 {% extends 'cadastro/add.html' %}
 
 <!-- Modal ID -->
-{% block modal-id %} id='editModal{{ produto.id }}' {% endblock modal-id %}
+{% block modal-id %} id="editModal{{ produto.pk }}" {% endblock modal-id %}
 
 <!-- Modal Title -->
-{% block modal-title %} <i></i> &nbsp; &nbsp; Editar Produto{% endblock modal-title %}
+{% block modal-title %} <i class='bx bxs-edit' ></i>&nbsp;&nbsp;  Editar Produto {% endblock modal-title %}
 
 <!-- Form Action -->
-{% block action %} action='/edit_produto' {% endblock action %}
+{% block action %} action="/edit_produto" {% endblock action %}
 
 <!-- Button Action -->
-{% block btn-action %}<i class='bx bxs-add-to-queue'></i> &nbsp;&nbsp; Salvar Mudanças{% endblock btn-action %}
+{% block btn-action %}<i class='bx bxs-edit-alt'></i>&nbsp;&nbsp; Editar Produto{% endblock btn-action %}
 
-<!-- INPUTs -->
 
-<!-- Edit Input Genérico -->
+
+<!---------------- INPUTS ---------------->
+
 {% block Value-id %}
-<div class="input-group mb-3" style="display: none;">
-    <span class="btn border-secondary bg-light side-label"><i class='bx bx-add-to-queue'></i></span>
+<div class="input-group mb-3">
+    <span class="btn border-secondary bg-ligth side-label"><i class='bx bx-barcode'></i></span>
     <input type="text" class="form-control" value="{{ produto.id }}" name="id" readonly>
 </div>
+
 {% endblock Value-id %}
 
-<!-- Edit Input Nome Produto  -->
-{% block Value-Nome_produto %} value="{{ produto.nome_produto }}" {% endblock Value-Nome_produto %}
 
-<!-- Edit Input Quantiade Produto  -->
-{% block Value-Quantidade_produto %} value="{{ produto.quantidade_produto }}" {% endblock Value-Quantidade_produto %}
+<!-- Nome -->
+{% block Value-nome %} value="{{ produto.nome_produto }}" {% endblock Value-nome %}
 
-<!-- Edit Input Data Produto  -->
-{% block Data-Produto %} value="{{ produto.data_adicao}}" id="d"{% endblock Data-Produto %}
+<!-- Quantidade -->
+{% block Value-quantidade %} value="{{ produto.quantidade_produto }}" {% endblock Value-quantidade %}
 
-<!-- Edit Input Nota Produto  -->
-{% block Nota_produto %} {{ produto.nota_produto }} {% endblock Nota_produto %}
+<!-- Nota -->
+{% block Value-nota %}{{ produto.nota_produto }}{% endblock Value-nota %}

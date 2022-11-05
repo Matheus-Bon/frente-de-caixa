@@ -27,11 +27,6 @@ class RelatoriosView(LoginRequiredMixin, TemplateView):
 def vendasPage(request):
     return render(request, "paginas/vendas.html")
 
-def estoquePage(request):
-    return render(request, "paginas/estoque.html")
-
-def gastosPage(request):
-    return render(request, "paginas/gastos.html")
 
 def relatoriosPage(request):
     return render(request, "paginas/relatorios.html")

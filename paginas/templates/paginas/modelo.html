@@ -14,14 +14,15 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
     <!-- Link Ícones -->
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <!-- Link Bootstrap 5.2 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
     <!-- Datatables CSS -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/date-1.1.2/r-2.3.0/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/date-1.1.2/r-2.3.0/datatables.min.css" />
 
     <!-- Select2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -157,7 +158,7 @@
         </script>
 
     <!-- JS para os Ícones -->
-    <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
@@ -167,53 +168,104 @@
     <!-- Datatables JS -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/date-1.1.2/r-2.3.0/datatables.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/date-1.1.2/r-2.3.0/datatables.min.js"></script>
 
 
     <!-- Select2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script src="{% static 'js/script-tabela-2.js' %}"></script>
+
+
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
+        integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
 
 
 
 
     <!-- Script AJAX para autenticação de produtos na label de vendas -->
 
-    <script>
 
-        $.getJSON("http://127.0.0.1:8000/get/ajax/validate/produto", function(data){
-            console.log(data);
-            $.each(data.produtos,(i,r)=>{
-                $("#prod").append(
-                    '<option value="'+r.id+'">'+r.nome_produto+' (R$ 2,50) <option>'
-                )
+
+
+
+    <script>
+        $(document).ready(function () {
+            $.getJSON("http://127.0.0.1:8000/json/", function (data) {
+
+                
+                // Parte que pega o JSON e transforma em um Array
+                var dimension = data.data
+
+                var listaProdutos = $.map(dimension, function (value, key) {
+
+                    return value.nome_produto
+                })
+                
+
+                // Autocomplete da label 'Nome do Produto'
+                $("#prod").autocomplete({
+                    source: listaProdutos
+                })
+
+
+                // Add cód/produto automaticamente 
+
+                        // Parte Cod
+                $("#prod").focusout(function () {
+
+                    var sel = $("#prod").val()
+
+                    for (i = 0; i < listaProdutos.length; i++) {
+
+                        if (sel == data.data[i]['nome_produto']) {
+
+                            sel = data.data[i]['id']
+
+                            $("#cod").val(sel)
+                        }
+                    }
+
+
+                })
+                        // Parte Cod
+                $("#cod").focusout(function () {
+
+                    var sel = $("#cod").val()
+
+                    for (i = 0; i < listaProdutos.length; i++) {
+
+                        if (sel == data.data[i]['id']) {
+
+                            sel = data.data[i]['nome_produto']
+
+                            $("#prod").val(sel)
+                        }
+                    }
+
+
+                })
+
+
+
+
+
+
+
+
+                $("#botaoAdicionarItem").click(function () {
+                    $("#table").after()
+                })
+
+
+
             });
 
-            $("#prod").select2()
-        });
-        $("#prod").on('change', ()=>{
-            let s = $("#prod option:selected");
-            console.log(s.text(),s.val());
+
         })
 
-        
-    </script>  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </script>
 
 
 
