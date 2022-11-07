@@ -1,6 +1,6 @@
 import imp
 from django.urls import path
-from .views import  vendasPage, relatoriosPage
+from .views import relatoriosPage, vendasPage
 from cadastro.views import estoque , gastos
 
 

@@ -22,6 +22,22 @@ class ListaProdutos(models.Model):
         }
 
 
+""" Modelo para Vendas """
+
+# class ListaVendas(models.Model):
+#     nome_produto = models.CharField(max_length=50, verbose_name='Produto')
+#     quantidade_produto = models.IntegerField(verbose_name='Qntd.')
+
+#     def __str__(self):
+#         return "{} {}".format(self.nome_produto, self.quantidade_produto)
+    
+#     def get_data(self):
+#         return{
+#             'id': self.id,
+#             'nome_produto': self.nome_produto,
+#             'quantidade_produto': self.quantidade_produto,
+#         }
+
 
 """ Modelo para Despesas """
 class ListaDespesas(models.Model):
@@ -40,7 +56,7 @@ class ListaDespesas(models.Model):
     nota_despesa = models.TextField()
 
     def __str__(self):
-        return "{} {} {} {} {} {}".format(self.nome_despesa, self.quantidade_despesa, self.custo, self.tipo_gasto, self.data_adicap_desp, self.nota_despesa)
+        return "{} {} {} {} {} {}".format(self.nome_despesa, self.quantidade_despesa, self.custo, self.tipo_gasto, self.data_adicao_desp, self.nota_despesa)
 
 
 

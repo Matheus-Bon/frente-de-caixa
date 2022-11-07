@@ -28,13 +28,22 @@
                         <th>Quantidade</th>
                     </tr>
                 </thead>
-                <tbody class="table-active">
+                <tbody class="">
+
+                    {% for venda in venda %}
                     <tr>
-                        <td id="tabela-cod"></td>
-                        <td id="tabela-prod"></td>
-                        <td id="tabela-qtd"></td>
-                        
+                        <td>{{ produto.id }}</td>
+                        <td>{{ produto.nome_produto }}</td>
+                        <td>{{ produto.quantidade_produto }}</td>
+                        <td>
+                            <a href="/delete_venda/{{ produto.id }}"
+                            class="btn btn-outline-danger btn-sm"><box-icon name='trash'></box-icon></a>
+
+                            </a>
+                        </td>
                     </tr>
+                    {% endfor %}
+                
                 </tbody>
             </table>
 
@@ -43,41 +52,41 @@
 
         </div>
 
-
-
-        <form class="sales_add">
+        <form class="sales_add" action="/add_venda" method="POST" autocomplete="off">
+            {% csrf_token %}
             <div class="sales_add-labels">
                 <label for="prod">Nome do Produto</label>
                 <div>
-                    <input type="text" id="prod" />
+                    <input type="text" name="nome_produto" id="prod" required/>
                 </div>
             </div>
             <div class="sales_add-labels">
                 <label for="cod">Código do Produto</label>
                 <div>
-                    <input type="text" name="" id="cod"> 
+                    <input type="text" name="id" id="cod" required/> 
                 </div>
             </div>
             <div class="sales_add-labels">
                 <label for="qtt">Quantidade</label>
                 <div>
-                    <input type="text" name="" id="qtt">
+                    <input type="text" name="quantidade_produto" id="qtt" required/>
                 </div>
             </div>
-            <div class="sales_add-labels">
+            <!-- <div class="sales_add-labels">
                 <label for="total">Valor Total</label>
                 <div>
-                    <input type="text" name="" id="total">
+                    <input type="text" name="" id="total" required/>
                 </div>
-            </div>
-
-
-
+            </div> -->
+        
+        
             <div class="sales_add-buttons">
                 <button type="submit" class="btn btn-primary mt-3" id="botaoAdicionarItem" >Adicionar Item</button>
-                <button type="submit" class="btn btn-primary mt-3">Finalizar Compras</button>
+                <!-- <button type="submit" class="btn btn-primary mt-3">Finalizar Compras</button> -->
             </div>
         </form>
+        
+
         <div class="sales_price">
             <div class="subtotal">
                 <h2>Valor Total:</h2>

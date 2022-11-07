@@ -7,7 +7,6 @@
 
 -----------------------------------------------------------------------------------*/
 
-
 /*----------------------------------------*/
 /*  1.  Login Page
 /*----------------------------------------*/
@@ -25,6 +24,8 @@
     justify-content: center;
     align-items: center;
     background-color: #942327;
+	overflow-x: hidden;
+	padding: 20px 0;
 }
 
 .login_main div {
@@ -91,6 +92,7 @@
 
 /* Aqui mexe na estrutura da sidebar */
 .sidebar {
+	z-index: 1;
     position: fixed;
     top: 0;
     left: 0;

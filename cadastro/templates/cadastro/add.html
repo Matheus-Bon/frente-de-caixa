@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title fs-5" id="addModalLabel">
-                    {% block modal-title %} <i class='bx bx-package'></i>&nbsp;&nbsp;  Adicionar Produto {% endblock modal-title %}
+                    {% block modal-title %} <i class='bx bx-package' style="position: relative; top: 3px; font-size: 22px;"></i>&nbsp;&nbsp;Adicionar Produto {% endblock modal-title %}
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -31,12 +31,12 @@
                     
 
                     <div class="form-group" >
-                        <textarea class="form-control" name="note" rows="7" maxlength="1000" placeholder="Descrição é opcional...">{% block nota %}{% endblock nota %}</textarea >
+                        <textarea class="form-control" name="nota_produto" rows="7" maxlength="1000" placeholder="Descrição é opcional...">{% block nota %}{% endblock nota %}</textarea >
                     </div>
 
                     <div class="mt-4" style="width: 100%;">
                         <button type="submit" class="btn btn-secondary mb-3">
-                            {% block btn-action %}<i class='bx bxs-add-to-queue'></i>&nbsp;&nbsp; Adicionar Produto{% endblock btn-action %}
+                            {% block btn-action %}<i class='bx bxs-add-to-queue'></i>&nbsp;&nbsp;Adicionar Produto{% endblock btn-action %}
                         </button>
 
                         <button type="reset" class="btn btn-outline-dark mb-3 ms-2" style="width: 50px;" title="Resetar" >
