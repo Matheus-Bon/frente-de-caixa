@@ -26,23 +26,10 @@
                         <th>Código</th>
                         <th>Produto</th>
                         <th>Quantidade</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
-                <tbody class="">
-
-                    {% for venda in venda %}
-                    <tr>
-                        <td>{{ produto.id }}</td>
-                        <td>{{ produto.nome_produto }}</td>
-                        <td>{{ produto.quantidade_produto }}</td>
-                        <td>
-                            <a href="/delete_venda/{{ produto.id }}"
-                            class="btn btn-outline-danger btn-sm"><box-icon name='trash'></box-icon></a>
-
-                            </a>
-                        </td>
-                    </tr>
-                    {% endfor %}
+                <tbody class="" id="sales-table">
                 
                 </tbody>
             </table>
@@ -52,7 +39,7 @@
 
         </div>
 
-        <form class="sales_add" action="/add_venda" method="POST" autocomplete="off">
+        <div class="sales_add" autocomplete="off">
             {% csrf_token %}
             <div class="sales_add-labels">
                 <label for="prod">Nome do Produto</label>
@@ -81,10 +68,10 @@
         
         
             <div class="sales_add-buttons">
-                <button type="submit" class="btn btn-primary mt-3" id="botaoAdicionarItem" >Adicionar Item</button>
+                <button class="btn btn-primary mt-3" id="btn-add" >Adicionar Item</button>
                 <!-- <button type="submit" class="btn btn-primary mt-3">Finalizar Compras</button> -->
             </div>
-        </form>
+        </div>
         
 
         <div class="sales_price">
@@ -103,12 +90,21 @@
 
 </section>
 
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous">
+        </script>
+
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
+integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
 
 
 
 
+<!-- Script AJAX para autenticação de produtos na label de vendas -->
 
 
+<script src="{% static 'js/script-json.js' %}"></script>
 
 
 {% endblock %}

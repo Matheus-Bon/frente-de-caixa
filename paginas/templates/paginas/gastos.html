@@ -39,7 +39,7 @@
                 {% for despesa in despesas %}
                 <tr>
 
-                    <td>{{ despesa.nome_despesa }}</td>
+                    <td>{{ despesa.nome_despesa }} <a class="text-center" title="Nota Produto" data-bs-toggle="modal" data-bs-target="#notaModal{{ despesa.id }}"><i class='bx bx-note'></i></a></td>
                     <td>{{ despesa.quantidade_despesa }}</td>
                     <td>R${{ despesa.custo }}</td>
                     <td>{{ despesa.tipo_gasto}}</td>
@@ -60,6 +60,22 @@
                 </tr>
 
                 {% include 'cadastro/edit-despesa.html' %}
+
+                <!-- Modal para descrição produto -->
+
+                <div class="modal fade" id="notaModal{{ despesa.id }}" tabindex="-1" aria-labelledby="notaModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="notaModalLabel">Descrição: {{ despesa.nome_produto }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{ despesa.nota_despesa }}</p>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
 
                 <!-- Modal para deletar despesa -->
 
