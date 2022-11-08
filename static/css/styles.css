@@ -370,6 +370,7 @@
 }
 
 .sales_itens {
+	overflow-y: auto;
     height: 35vw;
     border-radius: 2px;
 }

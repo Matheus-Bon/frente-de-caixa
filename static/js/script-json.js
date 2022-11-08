@@ -15,6 +15,21 @@ $(document).ready(function () {
             return value.quantidade_produto
         })
 
+        let quantidade_inicial = $.map(dimension, function (value, key) {
+
+            return value.quantidade_produto
+        })
+
+        let gasto = $.map(dimension, function (value, key) {
+
+            return 0
+        })
+
+        let gasto_inicial = $.map(dimension, function (value, key) {
+
+            return 0
+        })
+
         let lista = listaProdutos.filter( (value, key) => {
             
             if(data.data[key].quantidade_produto > 0){
@@ -68,36 +83,50 @@ $(document).ready(function () {
 
         })
 
-        let tabela = []
+        let tabela = [{
+            delItem: function(i){
+                tabela.splice(i, 1)
+            }
+        }]
 
         $("#btn-add").click(function () {
             if(lista.includes($('#prod').val()) && $('#cod').val() && $('#qtt').val()){
                 let indice = listaProdutos.indexOf($('#prod').val())
                 if( quantidade[indice] >= $('#qtt').val()){
-                    console.log('Bob Jeff')
+                    quantidade = quantidade_inicial.slice(0)
                     let obj = {
                         nome: $('#prod').val(),
                         codigo: $('#cod').val(),
                         quantidade: $('#qtt').val()
                     }
                     tabela.push(obj)
-                    console.log(tabela)
                     $("#sales-table").html('')
-                    for(i = 0; i < tabela.length; i++){
+                    for(i = 1; i < tabela.length; i++){
+                        let produto = listaProdutos.indexOf(tabela[i].nome)
+                        gasto[produto] += parseInt(tabela[i].quantidade)
                         $("#sales-table").append(`
                         <tr id="sale-${i}">
                             <td>${tabela[i].codigo}</td>
                             <td>${tabela[i].nome}</td>
                             <td>${tabela[i].quantidade}</td>
-                            <td><button id="excluir-${i}"><i class='bx bx-trash'></i></button></td>
+                            <td><button class="btn btn-sucess text-center" id="excluir-${i}"><i class='bx bx-trash'></i></button></td>
                         </tr>
                         `)
-                        // $(`#excluir-${i}`).click(function () {
-                        //     tabela.splice((i-1), 1)
-                        //     console.log(tabela)
-                        //     $(`#sale-${i}`).remove()
-                        // })
                     }
+                    for(let k = 0; k < quantidade.length; k++){
+                        quantidade[k] -= gasto[k]
+                    }
+                    let ultimo_gasto = gasto.slice(0)
+                    // console.log(gasto)
+                    gasto = gasto_inicial.slice(0)
+                    for(let j = 1; j < tabela.length; j++){
+                        $(`#excluir-${j}`).click(function () {
+                            tabela.splice(j, 1)
+                            $(`#sale-${j}`).remove()
+                            for(let k = 0; k < quantidade.length; k++){
+                                quantidade[k] += ultimo_gasto[k]
+                            }
+                        })}
                 } else {
                     alert(`Você tem apenas ${quantidade[indice]} unidades de ${$('#prod').val()}`)
                 }
@@ -105,10 +134,6 @@ $(document).ready(function () {
                 alert('Você está esquecendo algum campo!')
             }
         })
-
-
-
-
 
 
     });
