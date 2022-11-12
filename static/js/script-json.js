@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $.getJSON("http://127.0.0.1:8000/json/", function (data) {
-
+        console.log('v 1.11')
         
         // Parte que pega o JSON e transforma em um Array
         var dimension = data.data
@@ -83,45 +83,44 @@ $(document).ready(function () {
 
         })
 
-        let tabela = [{
-            delItem: function(i){
-                tabela.splice(i, 1)
-            }
-        }]
+        let table = $.map(dimension, function (value, key) {
+            let item = [{
+                id: value.id,
+                nome_produto: value.nome_produto,
+                quantidade_produto: 0
+            }]
+
+            return item
+        })
 
         $("#btn-add").click(function () {
             if(lista.includes($('#prod').val()) && $('#cod').val() && $('#qtt').val()){
                 let indice = listaProdutos.indexOf($('#prod').val())
                 if( quantidade[indice] >= $('#qtt').val()){
                     quantidade = quantidade_inicial.slice(0)
-                    let obj = {
-                        nome: $('#prod').val(),
-                        codigo: $('#cod').val(),
-                        quantidade: $('#qtt').val()
-                    }
-                    tabela.push(obj)
+                    table[indice].quantidade_produto += parseInt($('#qtt').val())
                     $("#sales-table").html('')
-                    for(i = 1; i < tabela.length; i++){
-                        let produto = listaProdutos.indexOf(tabela[i].nome)
-                        gasto[produto] += parseInt(tabela[i].quantidade)
-                        $("#sales-table").append(`
-                        <tr id="sale-${i}">
-                            <td>${tabela[i].codigo}</td>
-                            <td>${tabela[i].nome}</td>
-                            <td>${tabela[i].quantidade}</td>
-                            <td><button class="btn btn-sucess text-center" id="excluir-${i}"><i class='bx bx-trash'></i></button></td>
-                        </tr>
-                        `)
+                    for(i = 0; i < table.length; i++){
+                        gasto[i] += parseInt(table[i].quantidade_produto)
+                        if(table[i].quantidade_produto > 0){
+                            $("#sales-table").append(`
+                            <tr id="sale-${i}">
+                                <td id="id-prod-${i}">${table[i].id}</td>
+                                <td id="name-prod-${i}">${table[i].nome_produto}</td>
+                                <td id="qtt-prod-${i}">${table[i].quantidade_produto}</td>
+                                <td><button class="btn btn-sucess text-center" id="excluir-${i}"><i class='bx bx-trash'></i></button></td>
+                            </tr>
+                            `)
+                        }
                     }
                     for(let k = 0; k < quantidade.length; k++){
                         quantidade[k] -= gasto[k]
                     }
                     let ultimo_gasto = gasto.slice(0)
-                    // console.log(gasto)
                     gasto = gasto_inicial.slice(0)
-                    for(let j = 1; j < tabela.length; j++){
+                    for(let j = 0; j < table.length; j++){
                         $(`#excluir-${j}`).click(function () {
-                            tabela.splice(j, 1)
+                            table[j].quantidade_produto = 0
                             $(`#sale-${j}`).remove()
                             for(let k = 0; k < quantidade.length; k++){
                                 quantidade[k] += ultimo_gasto[k]
