@@ -5,6 +5,8 @@ from django.shortcuts import render
 from .models import ListaDespesas, ListaProdutos
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.contrib import messages
+import json
+
 
 
 
@@ -25,6 +27,8 @@ def add_produto(request):
             produto.nome_produto = request.POST.get('nome_produto')
             produto.quantidade_produto = request.POST.get('quantidade_produto')
             produto.nota_produto = request.POST.get('nota_produto')
+            produto.custo = request.POST.get('custo')
+            produto.tipo_produto = request.POST.get('tipo_produto')
             produto.save()
             messages.success(request, 'Produto adicionado com sucesso!')
             return HttpResponseRedirect("/estoque")
@@ -49,6 +53,8 @@ def edit_produto(request):
             produto.nome_produto = request.POST.get('nome_produto')
             produto.quantidade_produto = request.POST.get('quantidade_produto')
             produto.nota_produto = request.POST.get('nota_produto')
+            produto.custo = request.POST.get('custo')
+            produto.tipo_produto = request.POST.get('tipo_produto')
             produto.save()
             messages.success(request, 'Produto editado com sucesso!')
             return HttpResponseRedirect("/estoque") 
@@ -141,30 +147,13 @@ def produto_json(request):
 
 """ Listagem de Produtos a serem vendidos """
 
-# def vendas(request):
-#     # venda = ListaVendas.objects.all()
-#     return render(request, "paginas/vendas.html")
-
-# ADD Produto-Venda
-
-# def add_venda(request):
-#     if request.method == 'POST':
-#         if request.POST.get('nome_produto')\
-#             and request.POST.get('quantidade_produto'):
-#             produto = ListaProdutos.objects.get(id = request.POST.get('id'))
-#             venda = ListaVendas()
-#             venda.nome_produto = produto.nome_produto
-#             venda.quantidade_produto = produto.quantidade_produto
-#             venda.save()
-#             messages.success(request, 'Produto adicionado com sucesso!')
-#             return HttpResponseRedirect("/vendas")
-#     else:
-#         return render(request, 'cadastro\\add-venda.html')
-
-# # DELETE Produto-Venda
-
-# def delete_venda(request, despesa_id):
-#     despesa = ListaVendas.objects.get(id = despesa_id)
-#     despesa.delete()
-#     messages.success(request, "Despesa deletada com sucesso!")
-#     return HttpResponseRedirect('/vendas') 
+def finalizar_vendas(request):
+    if request.method == 'POST':
+        cart = json.loads(request.POST.get('cart'))
+        produtos = ListaProdutos.objects.all()
+        print(cart)
+        for i in range(0, len(produtos)):
+            produto = ListaProdutos.objects.get(id = cart[i]['id']) 
+            produto.quantidade_produto -= int(cart[i]['quantidade_produto'])
+            produto.save()
+        return HttpResponseRedirect('/estoque')

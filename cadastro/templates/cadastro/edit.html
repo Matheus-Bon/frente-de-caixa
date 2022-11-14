@@ -31,5 +31,10 @@
 <!-- Quantidade -->
 {% block Value-quantidade %} value="{{ produto.quantidade_produto }}" {% endblock Value-quantidade %}
 
+{% block Value-tipo %} value="{{ produto.tipo_produto }}" {% endblock Value-tipo %}
+
+<!-- Custo -->
+{% block Value-custo %} value="{{ produto.custo }}" {% endblock Value-custo %}
+
 <!-- Nota -->
 {% block nota %}{{ produto.nota_produto }}{% endblock nota %}

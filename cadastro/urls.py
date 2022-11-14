@@ -18,7 +18,7 @@ urlpatterns = [
     path('edit_despesa', views.edit_despesa, name='edit_despesa'),
     path('delete_despesa/<str:despesa_id>', views.delete_despesa, name='delete_despesa'),
 
-
+    path('finalizar-vendas', views.finalizar_vendas, name='finalizar_vendas'),
 
 
     # checkProduto

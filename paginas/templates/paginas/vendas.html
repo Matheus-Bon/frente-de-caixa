@@ -25,6 +25,7 @@
                     <tr>
                         <th>Código</th>
                         <th>Produto</th>
+                        <th>Preço</th>
                         <th>Quantidade</th>
                         <th>Delete</th>
                     </tr>
@@ -41,6 +42,15 @@
 
         <div class="sales_add" autocomplete="off">
             {% csrf_token %}
+            <!-- <div class="sales_add-labels">
+                <label for="combo">Combo</label>
+                <div>
+                    <select type="text" id="combo" required> 
+                        <option value="sem_combo" selected>Sem Combo</option>
+                        <option value="cem_salgados">100 Salgados</option>
+                    </select>
+                </div>
+            </div> -->
             <div class="sales_add-labels">
                 <label for="prod">Nome do Produto</label>
                 <div>
@@ -69,7 +79,11 @@
         
             <div class="sales_add-buttons">
                 <button class="btn btn-primary mt-3" id="btn-add" >Adicionar Item</button>
-                <!-- <button type="submit" class="btn btn-primary mt-3">Finalizar Compras</button> -->
+                <form action="finalizar-vendas" method="POST">
+                    {% csrf_token %}
+                    <input type="text" id="cart" style="display: none;" name="cart" value="">
+                    <button type="submit" class="btn btn-primary mt-3">Finalizar Compras</button>
+                </form>
             </div>
         </div>
         
@@ -77,12 +91,12 @@
         <div class="sales_price">
             <div class="subtotal">
                 <h2>Valor Total:</h2>
-                <div class="value">R$ 500</div>
+                <div class="value" id="total-value"> </div>
             </div>
-            <div class="total">
+            <!-- <div class="total">
                 <h2>Valor Cliente:</h2>
                 <div class="value">R$ 500</div>
-            </div>
+            </div> -->
         </div>
 
     </div>

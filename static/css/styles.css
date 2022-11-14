@@ -415,6 +415,11 @@
     width: 100%;
 }
 
+.sales_add select{
+	padding: 4px;
+	width: 100%;
+}
+
 .sales_add-labels {
     margin: 16px 0;
 }
@@ -469,6 +474,14 @@
     border: 1px solid black;
     height: 48px;
     width: 120px;
+}
+
+/*----------------------------------------*/
+/*  Estoque
+/*----------------------------------------*/
+
+.buttons_area{
+	padding: 60px 0px 35px;
 }
 
 /*----------------------------------------*/

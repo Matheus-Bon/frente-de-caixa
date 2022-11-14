@@ -9,16 +9,19 @@ class ListaProdutos(models.Model):
     quantidade_produto = models.IntegerField(verbose_name='Qntd.')
     data_adicao_prod= models.DateTimeField(auto_now_add= True ,verbose_name='Data de Adição')
     nota_produto = models.TextField(null=True, blank=True)
-    
+    custo = models.FloatField(verbose_name='Custo')
+    tipo_produto = models.TextField(verbose_name='Tipo de Produto')
 
     def __str__(self):
-        return "{} {} {} {}".format(self.nome_produto, self.quantidade_produto,self.data_adicao_prod, self.nota_produto)
+        return "{} {} {} {} {} {}".format(self.nome_produto, self.quantidade_produto,self.data_adicao_prod, self.nota_produto, self.custo, self.tipo_produto)
     
     def get_data(self):
         return{
             'id': self.id,
             'nome_produto': self.nome_produto,
             'quantidade_produto': self.quantidade_produto,
+            'custo': self.custo,
+            'tipo_produto': self.tipo_produto
         }
 
 

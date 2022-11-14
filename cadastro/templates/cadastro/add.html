@@ -28,7 +28,19 @@
                         <span class="btn border-secondary bg-ligth side-label"><i class='bx bxs-bar-chart-alt-2'></i></span>
                         <input type="text" class="form-control" name="quantidade_produto" maxlength="40" placeholder="Quantidade do Produto" required {% block Value-quantidade %}{% endblock Value-quantidade %}>
                     </div>
-                    
+
+
+                    <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-ligth side-label"><i class='bx bxs-purchase-tag'></i></span>
+                        <input type="text" class="form-control" name="tipo_produto" maxlength="40" placeholder="Tipo do produto" required {% block Value-tipo %}{% endblock Value-tipo %}>
+                    </div>
+
+
+                    <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-ligth side-label"><i class='bx bx-dollar' ></i></span>
+                        <input type="text" class="form-control" name="custo" maxlength="40" placeholder="Preço" required {% block Value-custo %}{% endblock Value-custo %}>
+                    </div>
+
 
                     <div class="form-group" >
                         <textarea class="form-control" name="nota_produto" rows="7" maxlength="1000" placeholder="Descrição é opcional...">{% block nota %}{% endblock nota %}</textarea >

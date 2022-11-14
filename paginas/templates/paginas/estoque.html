@@ -12,14 +12,15 @@
     <div class="conteudo_pagina">
 
         <div class="container">
+            <div class="buttons_area">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
+                    Adicione Produtos
+                </button>
 
-            <br><br><br>
-
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
-                Adicione Produtos
-            </button>
-
-            <br><br><br>
+                <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#comboModal">
+                    Adicione Combos
+                </button> -->
+            </div>
 
 
             <table class="table table-bordered" id="table" style="text-align: center ;">
@@ -28,6 +29,7 @@
                         <th style="width: 7%;">Código</th>
                         <th style="width: 20%;">Produto</th>
                         <th style="width: 10%;">Unidades</th>
+                        <th style="width: 8%;">Preço</th>
                         <th style="width: 15%;">Data de Adição</th>
                         <th style="width: 5%;">Editar</th>
                         <th style="width: 5%;">Deletar</th>
@@ -42,6 +44,7 @@
                     <td>{{ produto.id }}</td>
                     <td>{{ produto.nome_produto }} <a class="text-center" title="Nota Produto" data-bs-toggle="modal" data-bs-target="#notaModal{{ produto.pk }}"><i class='bx bx-note'></i></a></td>
                     <td>{{ produto.quantidade_produto }}</td>
+                    <td>R$ {{ produto.custo }}</td>
                     <td>{{ produto.data_adicao_prod | date:'d/m/Y (H:i)' }}</td>
 
                     <td>
@@ -116,6 +119,8 @@
         <!-- Tags para incluir Modal de add Produtos -->
 
         {% include 'cadastro/add.html' %}
+
+        <!-- {% include 'cadastro/add-combo.html' %} -->
 
 
         {% for message in messages %}
