@@ -1,0 +1,68 @@
+{% extends 'paginas/modelo.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>Login</title>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}
+
+{% block titutlo_pagina %}
+{% endblock %}
+
+{% block conteudo %}
+{% endblock %}
+
+{% block login %}
+
+<div class="container mt-5" id="card-login">
+    <div class="card p-5 login-border">
+        <span class="text-center mt-3 text-pulse"><strong>Contorle de Caixa</strong></span>
+
+        <form action="/login_user" method="POST" autocomplete="off">
+            {% csrf_token %}
+
+            <div class="input-group mb-2 mt-4">
+                <input type="text" class="form-control" name="username" placeholder="Nome do Usuário">
+            </div>
+
+            <div class="input-group mb-2">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Senha do Usuário">
+            </div>
+
+            <div class="form-check form-switch">
+                <input type="checkbox" class="form-check-input" onclick="myFunction()" style="float: right;">
+            </div>
+
+            <div class="d-grid gap-2 mt-3">
+                <input type="submit" class="btn btn-sucess btn-sm bt-s mt-4 mb-3" value="Entrar" id="btn-enter">
+            </div>
+
+            <center class="mt-5 mb-5">
+                <i class='bx bx-game' style="color:#d3d3d3; font-size: 150px"></i>
+            </center>
+
+        </form>
+    </div>
+</div>
+
+<!-- Script para mostrar a senha -->
+<script>
+    function myFunction(){
+        var p = document.getElementById('password');
+
+        if(p.type === 'password'){
+            p.type = 'text'
+        }
+        else {
+            p.type = 'password'
+        }
+    }
+
+</script>
+
+
+
+
+{% endblock %}

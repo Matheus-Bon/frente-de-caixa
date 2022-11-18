@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'paginas.apps.PaginasConfig',
-    'usuarios.apps.UsuariosConfig',
+    
     'cadastro.apps.CadastroConfig',
     
 
@@ -146,7 +146,4 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-""" Configuração de Autenticação """
-LOGIN_REDIRECT_URL = 'vendas'
-LOGIN_URL = 'login'
-LOGOUT_REDIRECT_URL = 'login'
+

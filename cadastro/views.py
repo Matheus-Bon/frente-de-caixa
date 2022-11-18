@@ -6,11 +6,19 @@ from .models import ListaDespesas, ListaProdutos
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.contrib import messages
 import json
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import cache_control
+
+
+#               Autenticação para entrar nas páginas
 
 
 
 
-""" Configurações do CRUD de Produtos """
+#               Configurações do CRUD de Produtos
+
+@login_required(login_url='/login/')
+@cache_control(no_cache=True, must_revalidate=True, no_store= True)
 
 def estoque(request):
     produto_list = ListaProdutos.objects.all()
@@ -75,6 +83,9 @@ def delete_produto(request, produto_id):
 
 
 """ Configurações do CRUD de Despesas """
+
+@login_required(login_url='/login/')
+@cache_control(no_cache=True, must_revalidate=True, no_store= True)
 
 def gastos(request):
     despesa_list = ListaDespesas.objects.all()

@@ -1,34 +1,55 @@
+from django.contrib.auth import authenticate, login , logout
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import TemplateView
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
+from django.views.decorators.cache import cache_control
+from django.contrib import messages
+
+
+#               Autenticação para entrar nas páginas
 
 
 
-""" Aqui mexe na visualização de cada página """
 
-""" class VendasView(LoginRequiredMixin, TemplateView):
-    login_url = reverse_lazy('login')
-    template_name = "paginas/vendas.html" """
+@login_required(login_url='login/')
+@cache_control(no_cache=True, must_revalidate=True, no_store= True)
 
-""" class EstoqueView(LoginRequiredMixin, TemplateView):
-    login_url = reverse_lazy('login')
-    template_name = "paginas/estoque.html"
-
-class GastosView(LoginRequiredMixin, TemplateView):
-    login_url = reverse_lazy('login')
-    template_name = "paginas/gastos.html"
-reverse_lazy
-class RelatoriosView(LoginRequiredMixin, TemplateView):
-    login_url = reverse_lazy('login')
-    template_name = "paginas/relatorios.html" """
+def relatorios(request):
+    return render(request , 'paginas/relatorios.html')
 
 
-def vendasPage(request):
-    return render(request, "paginas/vendas.html")
+@login_required(login_url='login/')
+@cache_control(no_cache=True, must_revalidate=True, no_store= True)
+def vendas(request):
+    return render(request , 'paginas/vendas.html')
 
 
-def relatoriosPage(request):
-    return render(request, "paginas/relatorios.html")
+# Função login
+
+def Login(request):
+    if request.user == None or request.user == '' or request.user.username =='':
+        return render(request, 'paginas/login.html')
+    else:
+        return HttpResponseRedirect('/')
+
+# Função user
 
 
+def LoginUser(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username = username , password = password)
+     
+        if user != None:
+            login(request, user)
+            return HttpResponseRedirect('/vendas')
+        else:
+            messages.error(request, "Entre com os dados corretos.")
+
+# Função logout
+
+def LogoutUser(request):
+    logout(request)
+    request.user = None
+    return HttpResponseRedirect('/login')

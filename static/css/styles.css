@@ -623,6 +623,47 @@ table.dataTable tfoot td {
 
 
 
+/*----------------------------------------*/
+/*  8.  CSS Login
+/*----------------------------------------*/
+
+#card-login{
+	width: 450px;
+}
+
+.login-border{
+	border-top: .4rem solid #942327 !important;
+	border-bottom: .4rem solid #942327 !important;
+	border-radius: 10px;
+}
+
+#btn-enter{
+	background: #f8d588;;
+	border-radius: 15px !important;
+	font-size: 16px;
+}
+
+
+.form-control:focus {
+	border-color: #703234 !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+
+.form-check-input:checked {
+	background-color: #b35656 !important;
+	border: #703234 !important;
+	box-shadow: 0 0 8px rgba(116, 9, 9, 0.4) !important;
+}
+
+.fomr-check-input {
+	border: #703234  !important;
+}
+
+.form-switch .fomr-check-input:focus{
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='grey'/%3e%3c/svg%3e"); 
+}
+
 
 
 
