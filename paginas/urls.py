@@ -13,7 +13,7 @@ urlpatterns = [
     path('relatorios', relatorios, name='relatorios'),
 
 
-    path('login/' , views.Login , name='login'),
+    path('' , views.Login , name='login'),
     path('login_user' , views.LoginUser , name='login_user'),
     path('logout' , views.LogoutUser , name='logout'),
 

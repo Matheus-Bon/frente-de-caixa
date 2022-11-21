@@ -11,14 +11,14 @@ from django.contrib import messages
 
 
 
-@login_required(login_url='login/')
+@login_required(login_url='/')
 @cache_control(no_cache=True, must_revalidate=True, no_store= True)
 
 def relatorios(request):
     return render(request , 'paginas/relatorios.html')
 
 
-@login_required(login_url='login/')
+@login_required(login_url='/')
 @cache_control(no_cache=True, must_revalidate=True, no_store= True)
 def vendas(request):
     return render(request , 'paginas/vendas.html')
@@ -52,4 +52,4 @@ def LoginUser(request):
 def LogoutUser(request):
     logout(request)
     request.user = None
-    return HttpResponseRedirect('/login')
+    return HttpResponseRedirect('/')

@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'paginas.apps.PaginasConfig',
-    
     'cadastro.apps.CadastroConfig',
+    'relatorios.apps.RelatoriosConfig',
     
 
 ## Funcionalidades para o Django ##
