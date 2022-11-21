@@ -6,23 +6,21 @@ from .models import ListaDespesas, ListaProdutos
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.contrib import messages
 import json
-from django.contrib.auth.decorators import login_required
-from django.views.decorators.cache import cache_control
-
-
-#               Autenticação para entrar nas páginas
 
 
 
 
-#               Configurações do CRUD de Produtos
-
-@login_required(login_url='/login/')
-@cache_control(no_cache=True, must_revalidate=True, no_store= True)
+""" Configurações do CRUD de Produtos """
 
 def estoque(request):
     produto_list = ListaProdutos.objects.all()
-    return render (request , 'paginas/estoque.html',{'produtos':produto_list})
+    tags = []
+    for prod in produto_list:
+        if prod.tipo_produto in tags:
+            pass
+        else:
+            tags.append(prod.tipo_produto)
+    return render (request , 'paginas/estoque.html',{'tags':tags,'produtos':produto_list})
 
 # ADD Produto
 
@@ -65,8 +63,20 @@ def edit_produto(request):
             produto.tipo_produto = request.POST.get('tipo_produto')
             produto.save()
             messages.success(request, 'Produto editado com sucesso!')
-            return HttpResponseRedirect("/estoque") 
+            return HttpResponseRedirect("/estoque")
 
+# EDIT LIST Produto
+
+def edit_by_type(request):
+    if request.method == 'POST':
+        produtos = ListaProdutos.objects.all()
+        for produto in produtos:
+            if produto.tipo_produto == request.POST.get('tipo_produto'):
+                produto.custo = request.POST.get('custo')
+                if request.POST.get('quantidade_produto'):
+                    produto.quantidade_produto = request.POST.get('quantidade_produto')
+                produto.save()
+        return HttpResponseRedirect("/estoque")
 
 # DELETE Produto
 
@@ -84,12 +94,22 @@ def delete_produto(request, produto_id):
 
 """ Configurações do CRUD de Despesas """
 
-@login_required(login_url='/login/')
-@cache_control(no_cache=True, must_revalidate=True, no_store= True)
-
 def gastos(request):
     despesa_list = ListaDespesas.objects.all()
-    return render (request , 'paginas/gastos.html',{'despesas':despesa_list})
+
+    gastos = {'mensal': 0,
+    'semanal': 0,
+    'esporadico': 0}
+
+    for despesa in despesa_list:
+        if despesa.tipo_gasto.lower() == 'mensal':
+            gastos['mensal'] += despesa.custo
+        if despesa.tipo_gasto.lower() == 'semanal':
+            gastos['semanal'] += despesa.custo
+        if despesa.tipo_gasto.lower() == 'esporadico':
+            gastos['esporadico'] += despesa.custo
+
+    return render (request , 'paginas/gastos.html',{'despesas':despesa_list, 'gastos': gastos})
 
 
 # ADD Despesa

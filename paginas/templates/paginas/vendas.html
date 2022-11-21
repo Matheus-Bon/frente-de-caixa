@@ -79,14 +79,55 @@
         
             <div class="sales_add-buttons">
                 <button class="btn btn-primary mt-3" id="btn-add" >Adicionar Item</button>
-                <form action="finalizar-vendas" method="POST">
-                    {% csrf_token %}
-                    <input type="text" id="cart" style="display: none;" name="cart" value="">
-                    <button type="submit" class="btn btn-primary mt-3">Finalizar Compras</button>
+                <button type="submit" class="btn btn-primary mt-3"  data-bs-toggle="modal" data-bs-target="#finalizarModal">Finalizar Compras</button>
                 </form>
             </div>
         </div>
         
+                <!-- Modal -->
+<div class="modal fade" id="finalizarModal" tabindex="-1" aria-labelledby="finalizarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5" id="finalizarModalLabel">
+                    <i class='bx bx-package' style="position: relative; top: 3px; font-size: 22px;"></i>&nbsp;&nbsp;Adicionar Produto
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+                <div class="modal-body">
+
+                    <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-ligth side-label"><i class='bx bx-dollar' ></i></span>
+                        <input type="text" class="form-control" id="valor-total" maxlength="40" placeholder="Valor Total" required readonly>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-ligth side-label"><i class='bx bx-dollar' ></i></span>
+                        <input type="text" class="form-control" id="valor-recebido" maxlength="40" placeholder="Recebido" required>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-ligth side-label"><i class='bx bx-dollar' ></i></span>
+                        <input type="text" class="form-control" id="troco" maxlength="40" placeholder="Troco" required readonly>
+                    </div>
+
+                    <div class="mt-4" style="width: 100%;">
+                        <form action="finalizar-vendas" method="POST">
+                            {% csrf_token %}
+                            <input type="text" id="cart" style="display: none;" name="cart" value="">
+                            <button type="submit" class="btn btn-secondary mb-3">
+                                <i class='bx bxs-shopping-bags'></i>&nbsp;&nbsp;Finalizar
+                            </button>
+                        </form>
+
+                    </div>
+
+                </div>
+        </div>
+    </div>
+</div>
+
 
         <div class="sales_price">
             <div class="subtotal">

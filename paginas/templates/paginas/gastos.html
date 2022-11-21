@@ -12,14 +12,27 @@
     <div class="conteudo_pagina">
 
         <div class="container">
-
-            <br><br><br>
-
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
-                Adicione Despesa
-            </button>
-
-            <br><br><br>
+            <div class="buttons_area d-flex justify-content-between align-content-end">
+                <div>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
+                        Adicione Despesa
+                    </button>
+                </div>
+                <div>
+                    <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-ligth side-label"><i class='bx bx-barcode'></i></span>
+                        <span class="form-control" >Gasto Mensal: R${{gastos.mensal}}</span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-ligth side-label"><i class='bx bx-barcode'></i></span>
+                        <span class="form-control" >Gasto Semanal: R${{gastos.semanal}}</span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-ligth side-label"><i class='bx bx-barcode'></i></span>
+                        <span class="form-control" >Gasto Esporadico: R${{gastos.esporadico}}</span>
+                    </div>
+                </div>
+            </div>
 
             <table class="table table-bordered" id="example" style="text-align: center ;">
                 <thead class="table-success">

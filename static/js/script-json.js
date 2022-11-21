@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $.getJSON("http://127.0.0.1:8000/json/", function (data) {
-        console.log('v 1.14')
+        console.log('v 1.19')
         
         // Parte que pega o JSON e transforma em um Array
         let dimension = data.data
@@ -77,7 +77,8 @@ $(document).ready(function () {
         })
 
         let custo = 0
-        let custo_total = 0
+
+        let custoTotal = 0
 
         let table = $.map(dimension, function (value, key) {
             let item = [{
@@ -113,28 +114,33 @@ $(document).ready(function () {
                         $('#total-value').html('').append(`R$ ${custo.toFixed(2)}`)
                         }
                     }
-                    custo_total = custo
+                    custoTotal = custo
                     custo = 0
                     document.getElementById('cart').value = JSON.stringify(table)
                     $('#prod').val(''), $('#cod').val(''), $('#qtt').val('')
                     for(let j = 0; j < table.length; j++){
                         $(`#excluir-${j}`).click(function () {
+                            let qtt = table[j].quantidade_produto
                             table[j].quantidade_produto = 0
                             quantidade[j] = quantidade_inicial[j]
-                            console.log(table[j])
-                            custo = custo + (table[j].custo * parseInt(table[j].quantidade_produto))
+                            custoTotal = custoTotal - (table[j].custo * parseInt(qtt))
                             $(`#sale-${j}`).remove()
-                            $('#total-value').html('').append(`R$ ${custo.toFixed(2)}`)
-                            custo_total = custo
-                            custo = 0
+                            $('#total-value').html('').append(`R$ ${custoTotal.toFixed(2)}`)
                         })}
-                        console.log(quantidade)
+                        console.log(custoTotal)
                 } else {
                     alert(`Você tem apenas ${quantidade[indice]} unidades de ${$('#prod').val()}`)
                 }
             } else {
                 alert('Você está esquecendo algum campo!')
             }
+            $('#valor-total').val(custoTotal)
+        })
+
+
+        $("#valor-recebido").focusout(function () {
+            let valor = parseFloat($("#valor-recebido").val()) - parseFloat($("#valor-total").val())
+            $("#troco").val(valor)
         })
 
 

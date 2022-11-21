@@ -14,12 +14,12 @@
         <div class="container">
             <div class="buttons_area">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
-                    Adicione Produtos
+                    Adicionar novo produto
                 </button>
 
-                <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#comboModal">
-                    Adicione Combos
-                </button> -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loteModal">
+                    Edição por tipo
+                </button>
             </div>
 
 
@@ -78,6 +78,8 @@
 
                 {% include 'cadastro/edit.html' %}
 
+                {% include 'cadastro/edit-lote.html' %}
+
 
                 <!-- Modal para deletar produto -->
 
@@ -119,8 +121,6 @@
         <!-- Tags para incluir Modal de add Produtos -->
 
         {% include 'cadastro/add.html' %}
-
-        <!-- {% include 'cadastro/add-combo.html' %} -->
 
 
         {% for message in messages %}

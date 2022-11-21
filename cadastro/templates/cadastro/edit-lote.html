@@ -1,0 +1,54 @@
+<!-- Modal -->
+<div class="modal fade" {% block modal-id %} id="loteModal" {% endblock modal-id %} tabindex="-1" aria-labelledby="loteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5" id="loteModalLabel">
+                    {% block modal-title %} <i class='bx bx-package' style="position: relative; top: 3px; font-size: 22px;"></i>&nbsp;&nbsp;Adicionar Produto {% endblock modal-title %}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" {% block action %} action="/edit_by_type" {% endblock action %} autocomplete="off">
+
+                {% csrf_token %}
+
+                <div class="modal-body">
+                    
+                    <!------------------ ID ------------------>
+                    {% block Value-id %}{% endblock Value-id %}
+
+                    <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-ligth side-label"><i class='bx bxs-bar-chart-alt-2'></i></span>
+                        <input type="text" class="form-control" name="quantidade_produto" maxlength="40" placeholder="Quantidade do Produto (não obrigatório)" {% block Value-quantidade %}{% endblock Value-quantidade %}>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-ligth side-label"><i class='bx bxs-purchase-tag'></i></span>
+                        <select class="form-control" name="tipo_produto" required {% block Value-tipo %}{% endblock Value-tipo %}>
+                            {% for tag in tags %}
+                                <option value="{{tag}}">{{tag}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="btn border-secondary bg-ligth side-label"><i class='bx bx-dollar'></i></span>
+                        <input type="text" class="form-control" name="custo" maxlength="40" placeholder="Preço da Venda" required {% block Value-custo %}{% endblock Value-custo %}>
+                    </div>
+
+                    <div class="mt-4" style="width: 100%;">
+                        <button type="submit" class="btn btn-secondary mb-3">
+                            {% block btn-action %}<i class='bx bxs-add-to-queue'></i>&nbsp;&nbsp;Adicionar Produto{% endblock btn-action %}
+                        </button>
+
+                        <a href="{% url 'estoque' %}" class="btn btn-outline-dark mb-3 ms-2" style="width: 50px;" title="Fechar" >
+                            <i class='bx bx-window-close'></i>
+                        </a>
+
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

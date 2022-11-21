@@ -20,6 +20,7 @@ urlpatterns = [
 
     path('finalizar-vendas', views.finalizar_vendas, name='finalizar_vendas'),
 
+    path('edit_by_type', views.edit_by_type, name='edit_lote'),
 
     # checkProduto
     path('json/', views.produto_json, name='produto_json' )
