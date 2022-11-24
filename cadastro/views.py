@@ -8,7 +8,7 @@ from django.contrib import messages
 import json
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_control
-
+from relatorios.models import *
 
 
 
@@ -39,6 +39,7 @@ def add_produto(request):
             produto.nota_produto = request.POST.get('nota_produto')
             produto.custo = request.POST.get('custo')
             produto.tipo_produto = request.POST.get('tipo_produto')
+            produto.vendido = 0
             produto.save()
             messages.success(request, 'Produto adicionado com sucesso!')
             return HttpResponseRedirect("/estoque")
@@ -111,7 +112,7 @@ def gastos(request):
             gastos['mensal'] += despesa.custo
         if despesa.tipo_gasto.lower() == 'semanal':
             gastos['semanal'] += despesa.custo
-        if despesa.tipo_gasto.lower() == 'esporadico':
+        if despesa.tipo_gasto == 'Esporádico':
             gastos['esporadico'] += despesa.custo
 
     return render (request , 'paginas/gastos.html',{'despesas':despesa_list, 'gastos': gastos})
@@ -186,10 +187,18 @@ def produto_json(request):
 def finalizar_vendas(request):
     if request.method == 'POST':
         cart = json.loads(request.POST.get('cart'))
+        caixa = Caixa.objects.first()
+        caixa.caixa += float(request.POST.get('valor-total'))
+        if caixa.log_forma_pagamento == '':
+            caixa.log_forma_pagamento = caixa.log_forma_pagamento + request.POST.get('forma_pagamento')
+        else:
+            caixa.log_forma_pagamento = caixa.log_forma_pagamento + ", " + request.POST.get('forma_pagamento')
+        caixa.save()
         produtos = ListaProdutos.objects.all()
         print(cart)
         for i in range(0, len(produtos)):
             produto = ListaProdutos.objects.get(id = cart[i]['id']) 
             produto.quantidade_produto -= int(cart[i]['quantidade_produto'])
+            produto.vendido += int(cart[i]['quantidade_produto'])
             produto.save()
         return HttpResponseRedirect('/estoque')

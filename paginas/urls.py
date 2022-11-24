@@ -1,16 +1,15 @@
 import imp
 from django.urls import path
 from cadastro.views import estoque , gastos
-from .views import vendas, relatorios
+from .views import vendas
 from . import views
-
+from relatorios.views import *
 
 urlpatterns = [
 
     path('vendas', vendas, name='vendas'),
     path('estoque', estoque, name='estoque'),
     path('gastos', gastos, name='gastos'),
-    path('relatorios', relatorios, name='relatorios'),
 
 
     path('' , views.Login , name='login'),

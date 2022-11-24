@@ -7,3 +7,48 @@
 <title>Relatórios</title>
 <link rel="icon" type="image/x-icon" href="{% static 'imagens/game-solid-26.png' %}">
 {% endblock %}
+
+{% block conteudo %}
+
+<section class="home_content">
+	<div class="conteudo_pagina">
+        <div class="container">
+			<div>
+				<h2>Selecione uma data referente ao caixa</h2>
+				<form method="POST" action="relatorios/produtos">
+					{% csrf_token %}
+					<select name="periodo">
+						{% for data in data_caixa %}
+							<option value="{{data.pk}}">{{data.periodo}}</option>
+						{% endfor %}
+					</select>
+					<button class="btn btn-secondary" type="submit">Procurar</button>
+				</form>
+			</div>
+			<br>
+			<br>
+			<div>
+				<h2>Selecione uma data referente as despesas</h2>
+				<form method="POST" action="relatorios/despesas">
+					{% csrf_token %}
+					<select name="periodo">
+						{% for data in data_despesa %}
+							<option value="{{data.pk}}">{{data.periodo}}</option>
+						{% endfor %}
+					</select>
+					<button class="btn btn-secondary" type="submit">Procurar</button>
+				</form>
+			</div>
+			<br>
+			<br>
+			<h4>O valor atual do caixa é: R$ {{cash}}</h4>
+			<form action="edit-caixa" method="POST">
+				{% csrf_token %}
+				<input type="number" name="new_caixa">
+				<button class="btn btn-secondary" type="submit">alterar</button>
+			</form>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

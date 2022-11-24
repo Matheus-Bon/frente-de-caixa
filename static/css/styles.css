@@ -409,6 +409,9 @@
     grid-row: span 2;
     border-left: 1px solid rgb(129, 129, 129);
     padding-left: 16px;
+	flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: space-around;
 }
 
 .sales_add input {
@@ -422,6 +425,11 @@
 
 .sales_add-labels {
     margin: 16px 0;
+}
+
+.sales_add-close{
+	text-align: end;
+	text-decoration: none;
 }
 
 .sales_add button {

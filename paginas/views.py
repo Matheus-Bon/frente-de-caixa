@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.decorators.cache import cache_control
 from django.contrib import messages
+from relatorios.models import *
 
 
 #               Autenticação para entrar nas páginas

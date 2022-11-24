@@ -1,163 +1,124 @@
 {% extends 'paginas/modelo.html' %}
 {% load static %}
-
 {% block titulo %}
 <title>Vendas</title>
-
 <link rel="icon" type="image/x-icon" href="{% static 'imagens/game-solid-26.png' %}">
-
-
-
-
 {% endblock %}
-
 {% block conteudo %}
 <style>
-
 </style>
-
 <section class="home_content">
-    <div class="sales_content">
-        <div class="sales_itens">
-            
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Código</th>
-                        <th>Produto</th>
-                        <th>Preço</th>
-                        <th>Quantidade</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody class="" id="sales-table">
-                
-                </tbody>
-            </table>
-
-
-
-
-        </div>
-
-        <div class="sales_add" autocomplete="off">
+   <div class="sales_content">
+      <div class="sales_itens">
+         <table class="table">
+            <thead>
+               <tr>
+                  <th>Código</th>
+                  <th>Produto</th>
+                  <th>Preço</th>
+                  <th>Quantidade</th>
+                  <th>Delete</th>
+               </tr>
+            </thead>
+            <tbody class="" id="sales-table">
+            </tbody>
+         </table>
+      </div>
+      <div class="d-flex sales_add">
+        <div class="" autocomplete="off">
             {% csrf_token %}
-            <!-- <div class="sales_add-labels">
-                <label for="combo">Combo</label>
-                <div>
-                    <select type="text" id="combo" required> 
-                        <option value="sem_combo" selected>Sem Combo</option>
-                        <option value="cem_salgados">100 Salgados</option>
-                    </select>
-                </div>
-            </div> -->
             <div class="sales_add-labels">
                 <label for="prod">Nome do Produto</label>
                 <div>
-                    <input type="text" name="nome_produto" id="prod" required/>
+                <input type="text" name="nome_produto" id="prod" required/>
                 </div>
             </div>
             <div class="sales_add-labels">
                 <label for="cod">Código do Produto</label>
                 <div>
-                    <input type="text" name="id" id="cod" required/> 
+                <input type="text" name="id" id="cod" required/> 
                 </div>
             </div>
             <div class="sales_add-labels">
                 <label for="qtt">Quantidade</label>
                 <div>
-                    <input type="text" name="quantidade_produto" id="qtt" required/>
+                <input type="text" name="quantidade_produto" id="qtt" required/>
                 </div>
             </div>
-            <!-- <div class="sales_add-labels">
-                <label for="total">Valor Total</label>
-                <div>
-                    <input type="text" name="" id="total" required/>
-                </div>
-            </div> -->
-        
-        
             <div class="sales_add-buttons">
                 <button class="btn btn-primary mt-3" id="btn-add" >Adicionar Item</button>
                 <button type="submit" class="btn btn-primary mt-3"  data-bs-toggle="modal" data-bs-target="#finalizarModal">Finalizar Compras</button>
                 </form>
             </div>
         </div>
-        
-                <!-- Modal -->
-<div class="modal fade" id="finalizarModal" tabindex="-1" aria-labelledby="finalizarModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fs-5" id="finalizarModalLabel">
-                    <i class='bx bx-package' style="position: relative; top: 3px; font-size: 22px;"></i>&nbsp;&nbsp;Adicionar Produto
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-                <div class="modal-body">
-
-                    <div class="input-group mb-3">
-                        <span class="btn border-secondary bg-ligth side-label"><i class='bx bx-dollar' ></i></span>
-                        <input type="text" class="form-control" id="valor-total" maxlength="40" placeholder="Valor Total" required readonly>
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <span class="btn border-secondary bg-ligth side-label"><i class='bx bx-dollar' ></i></span>
-                        <input type="text" class="form-control" id="valor-recebido" maxlength="40" placeholder="Recebido" required>
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <span class="btn border-secondary bg-ligth side-label"><i class='bx bx-dollar' ></i></span>
-                        <input type="text" class="form-control" id="troco" maxlength="40" placeholder="Troco" required readonly>
-                    </div>
-
-                    <div class="mt-4" style="width: 100%;">
-                        <form action="finalizar-vendas" method="POST">
-                            {% csrf_token %}
-                            <input type="text" id="cart" style="display: none;" name="cart" value="">
-                            <button type="submit" class="btn btn-secondary mb-3">
-                                <i class='bx bxs-shopping-bags'></i>&nbsp;&nbsp;Finalizar
-                            </button>
-                        </form>
-
-                    </div>
-
-                </div>
+        <div class="sales_add-close">
+            <a href="finalizar-caixa" style="text-decoration: none"><i class="bx bx-power-off"></i>Fechar Caixa</a>
         </div>
-    </div>
-</div>
-
-
-        <div class="sales_price">
-            <div class="subtotal">
-                <h2>Valor Total:</h2>
-                <div class="value" id="total-value"> </div>
+      </div>
+      <!-- Modal -->
+      <div class="modal fade" id="finalizarModal" tabindex="-1" aria-labelledby="finalizarModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title fs-5" id="finalizarModalLabel">
+                     <i class='bx bx-package' style="position: relative; top: 3px; font-size: 22px;"></i>&nbsp;&nbsp;Adicionar Produto
+                  </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+                  <div class="input-group mb-3">
+                     <span class="btn border-secondary bg-ligth side-label"><i class='bx bx-dollar' ></i></span>
+                     <input type="text" class="form-control" id="valor-total" name="valor-total" maxlength="40" placeholder="Valor Total" required readonly>
+                  </div>
+                  <div class="input-group mb-3">
+                     <span class="btn border-secondary bg-ligth side-label"><i class='bx bx-dollar' ></i></span>
+                     <input type="text" class="form-control" id="valor-recebido" maxlength="40" placeholder="Recebido" required>
+                  </div>
+                  <div class="input-group mb-3">
+                     <span class="btn border-secondary bg-ligth side-label"><i class='bx bx-dollar' ></i></span>
+                     <input type="text" class="form-control" id="troco" maxlength="40" placeholder="Troco" required readonly>
+                  </div>
+                  <div class="mt-4" style="width: 100%;">
+                     <form action="finalizar-vendas" method="POST">
+                        {% csrf_token %}
+                        <input type="text" id="cart" style="display: none;" name="cart" value="">
+                        <input type="text" style="display: none;" id="valor-total-form" name="valor-total" value="">
+                        <div class="input-group mb-3">
+                           <span class="btn border-secondary bg-ligth side-label"><i class='bx bx-accessibility' ></i></span>
+                           <select class="form-control" name="forma_pagamento" required>
+                              <option value="Dinheiro" selected>Dinheiro</option>
+                              <option value="Crédito">Crédito</option>
+                              <option value="Débito">Débito</option>
+                              <option value="PIX">PIX</option>
+                              <option value="Outro">Outro</option>
+                           </select>
+                        </div>
+                        <button type="submit" class="btn btn-secondary mb-3">
+                        <i class='bx bxs-shopping-bags'></i>&nbsp;&nbsp;Finalizar
+                        </button>
+                     </form>
+                  </div>
+               </div>
             </div>
-            <!-- <div class="total">
-                <h2>Valor Cliente:</h2>
-                <div class="value">R$ 500</div>
+         </div>
+      </div>
+      <div class="sales_price">
+         <div class="subtotal">
+            <h2>Valor Total:</h2>
+            <div class="value" id="total-value"> </div>
+         </div>
+         <!-- <div class="total">
+            <h2>Valor Cliente:</h2>
+            <div class="value">R$ 500</div>
             </div> -->
-        </div>
-
-    </div>
-
-
+      </div>
+   </div>
 </section>
-
-    <!-- Jquery -->
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous">
-        </script>
-
+<!-- Jquery -->
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+   integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
-integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
-
-
+   integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
 <!-- Script AJAX para autenticação de produtos na label de vendas -->
-
-
 <script src="{% static 'js/script-json.js' %}"></script>
-
-
 {% endblock %}

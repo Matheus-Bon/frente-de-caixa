@@ -135,6 +135,7 @@ $(document).ready(function () {
                 alert('Você está esquecendo algum campo!')
             }
             $('#valor-total').val(custoTotal)
+            $('#valor-total-form').val(custoTotal)
         })
 
 
