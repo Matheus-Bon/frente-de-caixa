@@ -44,7 +44,7 @@
                     <td>{{ produto.id }}</td>
                     <td>{{ produto.nome_produto }} <a class="text-center" title="Nota Produto" data-bs-toggle="modal" data-bs-target="#notaModal{{ produto.pk }}"><i class='bx bx-note'></i></a></td>
                     <td>{{ produto.quantidade_produto }}</td>
-                    <td>R$ {{ produto.custo }}</td>
+                    <td>R$ {{ produto.custo |floatformat:2 }}</td>
                     <td>{{ produto.data_adicao_prod | date:'d/m/Y (H:i)' }}</td>
 
                     <td>

@@ -1,4 +1,100 @@
-<p>{{ prod_json.periodo }}</p>
-<p>{{ prod_json.produtos }}</p>
-<p>{{ prod_json.faturamento }}</p>
-<p>{{ prod_json.log_forma_pagamento }}</p>
+{% extends 'paginas/modelo.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>Relatório| Venda</title>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}
+
+<!-- Datatables CSS -->
+<link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/date-1.1.2/r-2.3.0datatables.min.css" />
+
+{% block conteudo %}
+
+
+<div class="titulo_relatorio"> Relatório Vendas <strong>{{data | date:'d/m/Y'}}</strong></div>
+<!--  <p>{{produtos}}</p>  -->
+<!-- <p>{{log_pagamento}}</p> -->
+<!-- <p>{{data}}</p> -->
+<!-- <p>{{faturamento}}</p> -->
+<!-- <p>{{qtd_pagamento}}</p> -->
+
+
+<a href="/relatorios"><i class='bx bx-arrow-back' id="anc-back"></i></a>
+
+
+<div class="container" id="div-hist-prod">
+
+    <h2>Tabela de Produtos Vendidos</h2>
+    <table class="table table-striped table-hover" id="relavenda">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Produto</th>
+                <th>Valor Produto</th>
+                <th>Quantidade Vendida</th>
+            </tr>
+        </thead>
+        {% for prod in prod_json %}
+        <tbody>
+            <tr>
+                <td>{{prod.pk}}</td>
+                <td>{{prod.fields.nome_produto}}</td>
+                <td>R$ {{prod.fields.custo |floatformat:2}}</td>
+                <td>{{prod.fields.vendido}}</td>
+
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+
+<div class="container" id="div-pagamento">
+
+    <h2>Tabela de Formas de Pagmento</h2>
+    <table class="table table-striped table-hover" id="relavenda">
+        <thead>
+            <tr>
+                <th>Forma de Pagamento</th>
+                <th>Quantidade</th>
+            </tr>
+        </thead>
+        
+        {% for key in qtd_pagamento %}
+        <tbody>
+            <tr>
+                <td>{{key.forma}}</td>
+                <td>{{key.qtd}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+        
+    
+
+</div>
+
+<div class="container" id="div-faturamento">
+
+    <h3>Faturamento do dia {{data | date:'d/m/Y'}} :  <span style="color: green;">R$ {{faturamento|floatformat:2}}</span></h3>
+
+   
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

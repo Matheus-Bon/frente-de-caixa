@@ -1,3 +1,4 @@
+import json
 from django.contrib.auth import authenticate, login , logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -8,6 +9,9 @@ from relatorios.models import ControleGastos, ControleProduto, Caixa
 from cadastro.models import *
 from django.core import serializers
 import time
+from django.db.models import Count
+from django.db.models import Sum
+
 
 # Create your views here.
 def finalizar_caixa(request):
@@ -27,7 +31,7 @@ def finalizar_caixa(request):
     caixa.log_forma_pagamento = ''
     caixa.save()
 
-    return HttpResponseRedirect('/estoque')
+    return HttpResponseRedirect('/vendas')
 
 def finalizar_gastos(request):
     cash = Caixa.objects.first()
@@ -58,15 +62,41 @@ def relatorios(request):
 
 def relatorio_produtos(request):
     if request.method == 'POST':
-        prod_json = ControleProduto.objects.get(pk = request.POST.get('periodo'))
-        return render(request, 'selecao/historico-produtos.html', {'prod_json':prod_json})
+        prod_json = json.loads(ControleProduto.objects.get(pk = request.POST.get('periodo')).produtos)
+        produtos = ControleProduto.objects.get(pk= request.POST.get('periodo'))
+        log =  ControleProduto.objects.get(pk= request.POST.get('periodo')).log_forma_pagamento
+        log_pagamento = log.split(", ")
+
+
+        qtd_pagamento = [
+            {'forma': 'Crédito' , 'qtd': log_pagamento.count('Crédito')},
+            {'forma': 'Débito' , 'qtd': log_pagamento.count('Débito')},
+            {'forma': 'PIX' , 'qtd': log_pagamento.count('PIX')},
+            {'forma': 'Dinheiro' , 'qtd': log_pagamento.count('Dinheiro')},
+            {'forma': 'Outro' , 'qtd': log_pagamento.count('Outro')},
+        ]
+            
+    
+
+
+        data = ControleProduto.objects.get(pk= request.POST.get('periodo')).periodo
+        faturamento = ControleProduto.objects.get(pk= request.POST.get('periodo')).faturamento
+        return render(request, 'selecao/historico-produtos.html', {'prod_json':prod_json , "log_pagamento":log_pagamento, "data":data , "faturamento":faturamento ,"produtos": produtos , 'qtd_pagamento': qtd_pagamento})
     else:
         return HttpResponseRedirect('/relatorios')
 
 def relatorio_despesas(request):
     if request.method == 'POST':
-        desp_json = ControleGastos.objects.get(pk = request.POST.get('periodo'))
-        return render(request, 'selecao/historico-gastos.html', {'desp_json':desp_json})
+        despesas = ControleGastos.objects.get(pk = request.POST.get('periodo'))
+        desp_json = json.loads(ControleGastos.objects.get(pk = request.POST.get('periodo')).despesas)
+
+        
+            
+
+
+
+
+        return render(request, 'selecao/historico-gastos.html', {'desp_json':desp_json , 'despesas':despesas })
     else:
         return HttpResponseRedirect('/relatorios')
 
@@ -76,4 +106,8 @@ def edit_caixa(request):
         cash.caixa = request.POST.get('new_caixa')
         cash.save()
         return HttpResponseRedirect('/relatorios')
+
+
+
+
 

@@ -12,43 +12,76 @@
 
 <section class="home_content">
 	<div class="conteudo_pagina">
-        <div class="container">
-			<div>
-				<h2>Selecione uma data referente ao caixa</h2>
-				<form method="POST" action="relatorios/produtos">
-					{% csrf_token %}
-					<select name="periodo">
-						{% for data in data_caixa %}
-							<option value="{{data.pk}}">{{data.periodo}}</option>
-						{% endfor %}
-					</select>
-					<button class="btn btn-secondary" type="submit">Procurar</button>
-				</form>
-			</div>
-			<br>
-			<br>
-			<div>
-				<h2>Selecione uma data referente as despesas</h2>
+		<div class="container" id="div-rela">
+
+			<h2>Escolha uma data para ver o relatorios das Vendas</h2>
+			<form method="POST" action="relatorios/produtos">
+
+				{% csrf_token %}
+				<select name="periodo" class="form-select" aria-label="Default select example">
+					<option selected>Escolha uma data para o relatório</option>
+					{% for data in data_caixa %}
+					<option value="{{data.pk}}">{{data.periodo}}</option>
+					{% endfor %}
+				</select>
+				<button class="btn btn-primary" id="btn-rel-venda" type="submit">Procurar</button>
+			</form>
+
+
+
+
+			<div id="div-desp">
+				<h2>Escolha uma data para ver o relatorios de Despesas</h2>
 				<form method="POST" action="relatorios/despesas">
 					{% csrf_token %}
-					<select name="periodo">
+					<select name="periodo" class="form-select" aria-label="Default select example">
+						<option selected>Escolha uma data para o relatório</option>
 						{% for data in data_despesa %}
-							<option value="{{data.pk}}">{{data.periodo}}</option>
+						<option value="{{data.pk}}">{{data.periodo}}</option>
 						{% endfor %}
 					</select>
-					<button class="btn btn-secondary" type="submit">Procurar</button>
+					<button class="btn btn-primary" type="submit" id="btn-rel-desp">Procurar</button>
 				</form>
 			</div>
-			<br>
-			<br>
-			<h4>O valor atual do caixa é: R$ {{cash}}</h4>
-			<form action="edit-caixa" method="POST">
-				{% csrf_token %}
-				<input type="number" name="new_caixa">
-				<button class="btn btn-secondary" type="submit">alterar</button>
-			</form>
+
+
+			<div id="div-cash">
+				<h4>O valor atual do caixa é: <span id="cash">R$ {{cash |floatformat:2}}</span> </h4> 
+
+				
+
+				<form action="edit-caixa" method="POST">
+					{% csrf_token %}
+					<div class="input-group mb-3" id="cash-input">
+						<span class="input-group-text">R$</span>
+						<input type="number" name="new_caixa" class="form-control" aria-label="Amount (to the nearest dollar)">
+						<span class="input-group-text">.00</span>
+					  </div>
+					  
+					<button class="btn btn-primary" type="submit" id="btn-rel-cash">Alterar</button>
+				</form>
+
+			</div>
+
+
+
+
 		</div>
 	</div>
+
+
+
+
 </section>
+
+
+<!-- Jquery -->
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+	integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+
+
+
+
 
 {% endblock %}

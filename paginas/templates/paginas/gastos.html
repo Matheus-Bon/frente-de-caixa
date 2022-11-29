@@ -57,7 +57,7 @@
 
                     <td>{{ despesa.nome_despesa }} <a class="text-center" title="Nota Produto" data-bs-toggle="modal" data-bs-target="#notaModal{{ despesa.id }}"><i class='bx bx-note'></i></a></td>
                     <td>{{ despesa.quantidade_despesa }}</td>
-                    <td>R$ {{ despesa.custo }}</td>
+                    <td>R$ {{ despesa.custo |floatformat:2 }}</td>
                     <td>{{ despesa.tipo_gasto}}</td>
                     <td>{{ despesa.data_adicao_desp | date:'d/m/Y (H:i)' }}</td>
 

@@ -13,10 +13,13 @@ from relatorios.models import *
 
 
 """ Configurações do CRUD de Produtos """
-@login_required(login_url='/')
-@cache_control(no_cache=True, must_revalidate=True, no_store= True)
+
 
 def estoque(request):
+    #caixa = Caixa()
+    #caixa.log_forma_pagamento = ""
+    #caixa.caixa = 0
+    #caixa.save()
     produto_list = ListaProdutos.objects.all()
     tags = []
     for prod in produto_list:
@@ -98,8 +101,8 @@ def delete_produto(request, produto_id):
 
 
 """ Configurações do CRUD de Despesas """
-@login_required(login_url='/')
-@cache_control(no_cache=True, must_revalidate=True, no_store= True)
+
+
 def gastos(request):
     despesa_list = ListaDespesas.objects.all()
 

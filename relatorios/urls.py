@@ -11,5 +11,8 @@ urlpatterns = [
     path('relatorios', relatorios, name="relatorios"),
     path('relatorios/produtos', relatorio_produtos, name="relatorios-produtos"),
     path('relatorios/despesas', relatorio_despesas, name="relatorios-despesas"),
-    path('edit-caixa', edit_caixa, name="edit-caixa")
+    path('edit-caixa', edit_caixa, name="edit-caixa"),
+
+
+
 ]
