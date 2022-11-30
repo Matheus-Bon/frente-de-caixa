@@ -1,4 +1,4 @@
-# frente-de-caixa
+# PDV (Ponto de Venda)
 <h3> Considerações Iniciais </h3>
 
 Esse projeto tem como base nos colocar a prova de nossos conhecimentos das ferramentas usadas no site. A ideia inical é criarmos um PDV nível <strong>basico</strong>, com opção de venda dos produtos, uma área de estoque, despesa e por fim uma aba de relatórios. 
