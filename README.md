@@ -50,6 +50,17 @@ Aqui é onde se faz as vendas (Nesse caso, o banco de dados está povoado com da
 
 ---> Uma vez selecionada a data, você clique em 'Procurar', você será levado para uma outra página, é nela que estão as informações do dia, como produtos vendidos, quantidade usada de cada forma de pagamento e por fim o faturamento.
 
+
+# Algumas Imagens
+
+![image](https://user-images.githubusercontent.com/98958613/204900084-a8d5eb05-c63c-4c95-9d1e-dfe0e3e050f7.png)
+![image](https://user-images.githubusercontent.com/98958613/204900146-d381c7ce-f0df-440e-a299-6060785f5851.png)
+![image](https://user-images.githubusercontent.com/98958613/204900424-067d1604-489e-4697-ab8c-87c7e483028f.png)
+![image](https://user-images.githubusercontent.com/98958613/204900178-0900fbbb-0701-41a0-a282-75f6ec1d930a.png)
+![image](https://user-images.githubusercontent.com/98958613/204900230-506f4014-7d5a-40b3-8a0c-92780816e10e.png)
+![image](https://user-images.githubusercontent.com/98958613/204900588-e2d40368-d9d5-46f3-8717-68e7f2417ce6.png)
+
+
 # Criadores
 
 <h3> Matheus Bon e Carlos Eduardo </h3> 
