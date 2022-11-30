@@ -52,7 +52,7 @@ Aqui é onde se faz as vendas (Nesse caso, o banco de dados está povoado com da
 
 # Criadores
 
-<h3> Matheus Bon </h3>
-<h3> Carlos Eduardo </h3>
+<h3> Matheus Bon e Carlos Eduardo </h3> 
+
 
 
